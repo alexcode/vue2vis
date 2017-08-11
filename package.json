@@ -14,6 +14,10 @@
     "lint": "eslint src/* test/*",
     "beforePublish": "npm run lint && npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alexcode/vue2vis.git"
+  },
   "files": [
     "dist/",
     "src/"
