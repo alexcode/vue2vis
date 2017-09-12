@@ -1,0 +1,20 @@
+sudo:
+  false
+
+language:
+  node_js
+
+node_js:
+  - 6
+
+script:
+  - npm run build
+
+deploy:
+  provider: npm
+  email: infocontact.alex@gmail.com
+  api_key:
+    secure: SU1Kf/AdZprvAiQXE/0qX7Xlo9MWpO33RF/1p+2eZ8H6ysliF6dWls2IITwd9CgDrTIX9VCZQ9zxozNlZa9r9YuwNkUFIvETImDZ02xq1+C6+HZnKRY4PQ7QDSIZ9ij2zUuGtrJ+/hAGBOb3jb//UlETrJIHb/qGZoTiUcEpJ8p94Nu2QScss/YQwnHdh1c+ZzILZh7tbpOrD80C1oTKtI1OwnX6lB1ABvs2/gKLw215DkVLBCZb5HMsVkChYoiqu0K7lE+nxHxTRLwzTcwK/DuMgTZK21uIxRmITporAcuG33XxbhCZLiSG18R/bs+3zmlcTlpJvPAvgwjWT31msUbHcaF0T5k84qQ8G73RCcGH2ssPZp9Qxv3EhCP+T/inFtSAY7eEi4hoM5ISDG7DXM7A+xvNMNWibogNnyjlP3s9B7st2TIM2h8sNuOS76kJeGX+kpSavcHEPBsCbYaA5o1eeFlGFTb7Qrts8ZJSxNO2kyeOrg3mthDF4f+mQ/dWtpPVMnH1ZMoAdc+TEGeYvT6q2LGO/ovig7BsHHAVcPYfs0MsHnGPMaCupIVR5bGsYKf1c0V5SSAF/uDwEDsicxeJtCWfVI20uO9ipGaVn858783/ad81ChcnffP0D/Pk28fT83dUo3aSXb0EGmZ6oBr1QHcu4NHuGHrym3uyebI=
+  on:
+    tags: true
+    repo: alexcode/vue2vis

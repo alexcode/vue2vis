@@ -1,10 +1,10 @@
 # vue2vis
 
-Vue2 component that helps with Visjs interaction
+> Vue2 component that helps with <a href="http://visjs.org/">Visjs</a> interaction
 
 <p align="center">
-  <a href="https://circleci.com/gh/alexcode/vue2vis">
-    <img src="https://circleci.com/gh/alexcode/vue2vis.svg?style=svg" alt="Build Status" />
+  <a href="https://travis-ci.org/alexcode/vue2vis">
+    <img src="https://travis-ci.org/alexcode/vue2vis.svg?branch=master" alt="Build Status" />
   </a>
   <a href="https://coveralls.io/github/alexcode/vue2vis?branch=master">
     <img src="https://coveralls.io/repos/github/alexcode/vue2vis/badge.svg?branch=master&style=flat-square" alt="Coverage Status" />
