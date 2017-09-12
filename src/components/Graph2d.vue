@@ -6,7 +6,6 @@
 import vis from 'vis';
 
 const events = [
-  'currentTimeTick',
   'click',
   'contextmenu',
   'doubleClick',
@@ -118,10 +117,16 @@ export default {
     this.graph2d = new vis.Graph2d(container, items, groups, this.options);
     events.forEach(eventName => this.graph2d.on(
       eventName, props => this.$emit(eventName, props)));
+    if (this.withTimeTick) {
+      this.timeline.on('currentTimeTick', props => this.$emit('currentTimeTick', props));
+    }
   },
   beforeDestroy() {
     events.forEach(eventName => this.graph2d.off(
       eventName, props => this.$emit(eventName, props)));
+    if (this.withTimeTick) {
+      this.timeline.off('currentTimeTick', props => this.$emit('currentTimeTick', props));
+    }
   },
 };
 </script>

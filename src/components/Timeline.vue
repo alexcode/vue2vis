@@ -6,7 +6,6 @@
 import vis from 'vis';
 
 const events = [
-  'currentTimeTick',
   'click',
   'contextmenu',
   'doubleClick',
@@ -43,6 +42,10 @@ export default {
     },
     options: {
       type: Object,
+    },
+    withTimeTick: {
+      type: Boolean,
+      default: false,
     },
   },
   data: () => ({
@@ -167,10 +170,16 @@ export default {
     this.timeline = new vis.Timeline(container, items, groups, this.options);
     events.forEach(eventName => this.timeline.on(
       eventName, props => this.$emit(eventName, props)));
+    if (this.withTimeTick) {
+      this.timeline.on('currentTimeTick', props => this.$emit('currentTimeTick', props));
+    }
   },
   beforeDestroy() {
     events.forEach(eventName => this.timeline.off(
       eventName, props => this.$emit(eventName, props)));
+    if (this.withTimeTick) {
+      this.timeline.off('currentTimeTick', props => this.$emit('currentTimeTick', props));
+    }
   },
 };
 </script>
