@@ -10,9 +10,7 @@
     "test": "test"
   },
   "scripts": {
-    "purge": "rm -rf dist/",
-    "compile": "rollup -c",
-    "build": "npm run purge && cd scripts && ./build.sh",
+    "build": "cd scripts && ./build.sh",
     "lint": "eslint src/* test/*",
     "beforePublish": "npm run lint && npm run build"
   },
