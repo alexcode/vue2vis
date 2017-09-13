@@ -130,7 +130,3 @@ export default {
   },
 };
 </script>
-
-<style lang="css">
-  @import "~vis/dist/vis.css";
-</style>
