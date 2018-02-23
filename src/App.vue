@@ -1,19 +1,67 @@
 <template>
-  <div class="wrapper">
-      <h2>Timeline</h2>
-      <timeline ref="timeline" :items="timeline.items" :groups="timeline.groups" :options="timeline.options"></timeline>
+    <div class="wrapper">
+        <h2>Network</h2>
+        <network 
+            class="network"
+            ref="network" 
+            :nodes="network.nodes" 
+            :edges="network.edges" 
+            :options="network.options"
+            @click="networkEvent('click')"
+            @doubleClick="networkEvent('doubleClick')"
+            @oncontext="networkEvent('oncontext')"
+            @hold="networkEvent('hold')"
+            @release="networkEvent('release')"
+            @select="networkEvent('select')"
+            @selectNode="networkEvent('selectNode')"
+            @selectEdge="networkEvent('selectEdge')"
+            @deselectNode="networkEvent('deselectNode')"
+            @deselectEdge="networkEvent('deselectEdge')"
+            @dragStart="networkEvent('dragStart')"
+            @dragging="networkEvent('dragging')"
+            @dragEnd="networkEvent('dragEnd')"
+            @hoverNode="networkEvent('hoverNode')"
+            @blurNode="networkEvent('blurNode')"
+            @hoverEdge="networkEvent('hoverEdge')"
+            @blurEdge="networkEvent('blurEdge')"
+            @zoom="networkEvent('zoom')"
+            @showPopup="networkEvent('showPopup')"
+            @hidePopup="networkEvent('hidePopup')"
+            @startStabilizing="networkEvent('startStabilizing')"
+            @stabilizationProgress="networkEvent('stabilizationProgress')"
+            @stabilizationIterationsDone="networkEvent('stabilizationIterationsDone')"
+            @stabilized="networkEvent('stabilized')"
+            @resize="networkEvent('resize')"
+            @initRedraw="networkEvent('initRedraw')"
+            @beforeDrawing="networkEvent('beforeDrawing')"
+            @afterDrawing="networkEvent('afterDrawing')"
+            @animationFinished="networkEvent('animationFinished')"
+            @configChange="networkEvent('configChange')"
+            >
+        </network>
+        <button @click="addNode">Add node</button>
+        <button @click="resetNetwork">Reset Network</button>
+        <div class="events"><p>Network events: <br /> {{networkEvents}}</p></div>
+        
+        <hr>
+        
+        <h2>Timeline</h2>
+        <timeline ref="timeline" :items="timeline.items" :groups="timeline.groups" :options="timeline.options"></timeline>
 
-      <hr>
+        <hr>
 
-      <h2>Graph2d</h2>
-      <graph-2d ref="graph2d" :items="graph2d.items" :groups="graph2d.groups" :options="graph2d.options"></graph-2d>
-  </div>
+        <h2>Graph2d</h2>
+        <graph-2d ref="graph2d" :items="graph2d.items" :groups="graph2d.groups" :options="graph2d.options"></graph-2d>
+        
+    </div>
 </template>
 
 <script>
 
     import Timeline from './components/Timeline.vue';
-    import Graph2d from './components/Graph2d.vue'
+    import Graph2d from './components/Graph2d.vue';
+    import Network from './components/Network.vue';
+
     import 'vis/dist/vis.css';
 
     export default {
@@ -106,12 +154,61 @@
                         start: '2014-06-10',
                         end: '2014-07-04'
                     }
+                },
+                networkEvents: '',
+                network: {
+                    nodes: [
+                        {id: 1, label: 'Node 1'},
+                        {id: 2, label: 'Node 2'},
+                        {id: 3, label: 'Node 3'},
+                        {id: 4, label: 'Node 4'},
+                        {id: 5, label: 'Node 5'}
+                    ],
+                    edges: [
+                        {from: 1, to: 3},
+                        {from: 1, to: 2},
+                        {from: 2, to: 4},
+                        {from: 2, to: 5},
+                        {from: 3, to: 3}
+                    ],
+                    options: {}
                 }
             }
         },
         components: {
             Timeline,
-            Graph2d
+            Graph2d,
+            Network
+        },
+        methods: {
+            networkEvent(eventName) {
+                if (this.networkEvents.length > 500)
+                    this.networkEvents = '';
+                this.networkEvents += eventName + ', ';
+            },
+            addNode() {
+                const id = new Date().getTime();
+                this.network.nodes.push({ id:id, label: `Node ${id}` });
+            },
+            resetNetwork() {
+                this.network = {
+                    nodes: [
+                        {id: 1, label: 'Node 1'},
+                        {id: 2, label: 'Node 2'},
+                        {id: 3, label: 'Node 3'},
+                        {id: 4, label: 'Node 4'},
+                        {id: 5, label: 'Node 5'}
+                    ],
+                    edges: [
+                        {from: 1, to: 3},
+                        {from: 1, to: 2},
+                        {from: 2, to: 4},
+                        {from: 2, to: 5},
+                        {from: 3, to: 3}
+                    ],
+                    options: {}
+                };
+            }
         }
     }
 </script>
@@ -125,6 +222,16 @@
     .wrapper {
         padding: 20px 50px;
         text-align: center;
+    }
+    .events {
+        text-align: left;
+        height: 70px;
+    }
+
+    .network {
+        height: 400px;
+        border: 1px solid #ccc;
+        margin: 5px 0;
     }
 
 </style>
