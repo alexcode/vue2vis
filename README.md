@@ -125,7 +125,7 @@ npm install
 To get the component running with an example application use
 
 ```
-npm install
+npm run dev
 ```
 
 ## Security
