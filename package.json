@@ -1,6 +1,6 @@
 {
   "name": "vue2vis",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Vue2 component that helps with Visjs interaction",
   "jsnext": "dist/vue2vis.js",
   "main": "dist/vue2vis.min.js",
