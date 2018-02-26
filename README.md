@@ -116,6 +116,18 @@ $ npm run test
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details.
 
+To setup the development environment simply use
+
+```
+npm install
+```
+
+To get the component running with an example application use
+
+```
+npm run dev
+```
+
 ## Security
 
 If you discover any security related issues, please email infocontact.alex@gmail.com instead of using the issue tracker.
