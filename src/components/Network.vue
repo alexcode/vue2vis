@@ -55,7 +55,7 @@ export default {
         }
     },
     data: () => ({
-        // This is set on created() hook below, checkout for more info
+        // This is set on the created() hook below, checkout for more info
         // network: null,
         visData: {
             nodes: null,
@@ -67,12 +67,20 @@ export default {
             deep: true,
             handler(n) {
                 this.visData.nodes.update(n);
+                var newIds = new vis.DataSet(n).getIds();
+                var oldIds = this.visData.nodes.getIds();
+                var diff = getArrayDiff(oldIds, newIds);
+                this.visData.nodes.remove(diff);
             },
         },
         edges: {
             deep: true,
             handler(e) {
                 this.visData.edges.update(e);
+                var newIds = new vis.DataSet(e).getIds();
+                var oldIds = this.visData.edges.getIds();
+                var diff = getArrayDiff(oldIds, newIds);
+                this.visData.edges.remove(diff);
             },
         },
         options: {
@@ -264,7 +272,6 @@ export default {
         const container = this.$refs.visualization;
         this.visData.nodes = new vis.DataSet(this.nodes);
         this.visData.edges = new vis.DataSet(this.edges);
-
         this.network = new vis.Network(container, this.visData, this.options);
 
         events.forEach(eventName => this.network.on(eventName, props => this.$emit(eventName, props)));
@@ -278,4 +285,9 @@ export default {
         this.network = null;
     }
 };
+
+// Helpers
+function getArrayDiff(arr1, arr2) {
+    return arr1.filter(x => !arr2.includes(x));
+}
 </script>

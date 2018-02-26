@@ -40,7 +40,10 @@
             >
         </network>
         <button @click="addNode">Add node</button>
+        <button @click="addEdge">Add edge</button>
         <button @click="resetNetwork">Reset Network</button>
+        <button @click="removeNode">Remove Node</button>
+        <button @click="removeEdge">Remove Edge</button>
         <div class="events"><p>Network events: <br /> {{networkEvents}}</p></div>
         
         <hr>
@@ -165,13 +168,17 @@
                         {id: 5, label: 'Node 5'}
                     ],
                     edges: [
-                        {from: 1, to: 3},
-                        {from: 1, to: 2},
-                        {from: 2, to: 4},
-                        {from: 2, to: 5},
-                        {from: 3, to: 3}
+                        {id: 1, from: 1, to: 3},
+                        {id: 2, from: 1, to: 2},
+                        {id: 3, from: 2, to: 4},
+                        {id: 4, from: 2, to: 5},
+                        {id: 5, from: 3, to: 3}
                     ],
-                    options: {}
+                    options: {
+                        nodes: {
+                            shape: 'circle'
+                        }
+                    }
                 }
             }
         },
@@ -188,7 +195,16 @@
             },
             addNode() {
                 const id = new Date().getTime();
-                this.network.nodes.push({ id:id, label: `Node ${id}` });
+                this.network.nodes.push({ id:id, label: `New node` });
+            },
+            addEdge() {
+                var n1 = Math.floor(Math.random() * this.network.nodes.length);
+                var n2 = Math.floor(Math.random() * this.network.nodes.length);
+                this.network.edges.push({
+                    id: `${this.network.nodes[n1].id}-${this.network.nodes[n2].id}`,
+                    from: this.network.nodes[n1].id,
+                    to: this.network.nodes[n2].id
+                });
             },
             resetNetwork() {
                 this.network = {
@@ -200,15 +216,21 @@
                         {id: 5, label: 'Node 5'}
                     ],
                     edges: [
-                        {from: 1, to: 3},
-                        {from: 1, to: 2},
-                        {from: 2, to: 4},
-                        {from: 2, to: 5},
-                        {from: 3, to: 3}
+                        {id: 1, from: 1, to: 3},
+                        {id: 2, from: 1, to: 2},
+                        {id: 3, from: 2, to: 4},
+                        {id: 4, from: 2, to: 5},
+                        {id: 5, from: 3, to: 3}
                     ],
                     options: {}
                 };
-            }
+            },
+            removeNode() {
+                this.network.nodes.splice(0, 1);
+            },
+            removeEdge() {
+                this.network.edges.splice(0, 1);
+            },
         }
     }
 </script>
