@@ -228,11 +228,11 @@ export default {
     getSelectedEdges() {
       return this.network.getSelectedEdges();
     },
-    getNodeAt(x, y) {
-      return this.network.getNodeAt(x, y);
+    getNodeAt(p) {
+      return this.network.getNodeAt(p);
     },
-    getEdgeAt(x, y) {
-      return this.network.getEdgeAt(x, y);
+    getEdgeAt(p) {
+      return this.network.getEdgeAt(p);
     },
     selectNodes(nodeIds, highlightEdges) {
       this.network.selectNodes(nodeIds, highlightEdges);
