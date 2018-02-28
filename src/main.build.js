@@ -3,7 +3,7 @@ import Graph2d from './components/Graph2d.vue';
 import Network from './components/Network.vue';
 
 export {
-	Timeline,
-	Graph2d,
-	Network
+  Timeline,
+  Graph2d,
+  Network
 };

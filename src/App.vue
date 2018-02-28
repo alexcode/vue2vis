@@ -60,11 +60,11 @@
 </template>
 
 <script>
-import Timeline from "./components/Timeline.vue";
-import Graph2d from "./components/Graph2d.vue";
-import Network from "./components/Network.vue";
+import Timeline from './components/Timeline.vue';
+import Graph2d from './components/Graph2d.vue';
+import Network from './components/Network.vue';
 
-import "vis/dist/vis.css";
+import 'vis/dist/vis.css';
 
 export default {
   data() {
@@ -73,27 +73,27 @@ export default {
         groups: [
           {
             id: 0,
-            content: "Group 1"
+            content: 'Group 1'
           }
         ],
         items: [
-          { id: 2, group: 0, content: "item 2", start: "2014-04-14" },
-          { id: 3, group: 0, content: "item 3", start: "2014-04-18" },
-          { id: 1, group: 0, content: "item 1", start: "2014-04-20" },
+          { id: 2, group: 0, content: 'item 2', start: '2014-04-14' },
+          { id: 3, group: 0, content: 'item 3', start: '2014-04-18' },
+          { id: 1, group: 0, content: 'item 1', start: '2014-04-20' },
           {
             id: 4,
             group: 0,
-            content: "item 4",
-            start: "2014-04-16",
-            end: "2014-04-19"
+            content: 'item 4',
+            start: '2014-04-16',
+            end: '2014-04-19'
           },
-          { id: 5, group: 0, content: "item 5", start: "2014-04-25" },
+          { id: 5, group: 0, content: 'item 5', start: '2014-04-25' },
           {
             id: 6,
             group: 0,
-            content: "item 6",
-            start: "2014-04-27",
-            type: "point"
+            content: 'item 6',
+            start: '2014-04-27',
+            type: 'point'
           }
         ],
         options: {
@@ -104,81 +104,81 @@ export default {
         groups: [
           {
             id: 0,
-            content: "SquareShaded",
+            content: 'SquareShaded',
             options: {
               drawPoints: {
-                style: "square" // square, circle
+                style: 'square' // square, circle
               },
               shaded: {
-                orientation: "bottom" // top, bottom
+                orientation: 'bottom' // top, bottom
               }
             }
           },
           {
             id: 1,
-            content: "Bargraph",
+            content: 'Bargraph',
             options: {
-              style: "bar"
+              style: 'bar'
             }
           },
           {
             id: 2,
-            content: "Blank",
+            content: 'Blank',
             options: { drawPoints: false }
           },
           {
             id: 3,
-            content: "CircleShaded",
+            content: 'CircleShaded',
             options: {
               drawPoints: {
-                style: "circle" // square, circle
+                style: 'circle' // square, circle
               },
               shaded: {
-                orientation: "top" // top, bottom
+                orientation: 'top' // top, bottom
               }
             }
           }
         ],
         items: [
-          { x: "2014-06-13", y: 60 },
-          { x: "2014-06-14", y: 40 },
-          { x: "2014-06-15", y: 55 },
-          { x: "2014-06-16", y: 40 },
-          { x: "2014-06-17", y: 50 },
-          { x: "2014-06-13", y: 30, group: 0 },
-          { x: "2014-06-14", y: 10, group: 0 },
-          { x: "2014-06-15", y: 15, group: 1 },
-          { x: "2014-06-16", y: 30, group: 1 },
-          { x: "2014-06-17", y: 10, group: 1 },
-          { x: "2014-06-18", y: 15, group: 1 },
-          { x: "2014-06-19", y: 52, group: 1 },
-          { x: "2014-06-20", y: 10, group: 1 },
-          { x: "2014-06-21", y: 20, group: 2 },
-          { x: "2014-06-22", y: 60, group: 2 },
-          { x: "2014-06-23", y: 10, group: 2 },
-          { x: "2014-06-24", y: 25, group: 2 },
-          { x: "2014-06-25", y: 30, group: 2 },
-          { x: "2014-06-26", y: 20, group: 3 },
-          { x: "2014-06-27", y: 60, group: 3 },
-          { x: "2014-06-28", y: 10, group: 3 },
-          { x: "2014-06-29", y: 25, group: 3 },
-          { x: "2014-06-30", y: 30, group: 3 }
+          { x: '2014-06-13', y: 60 },
+          { x: '2014-06-14', y: 40 },
+          { x: '2014-06-15', y: 55 },
+          { x: '2014-06-16', y: 40 },
+          { x: '2014-06-17', y: 50 },
+          { x: '2014-06-13', y: 30, group: 0 },
+          { x: '2014-06-14', y: 10, group: 0 },
+          { x: '2014-06-15', y: 15, group: 1 },
+          { x: '2014-06-16', y: 30, group: 1 },
+          { x: '2014-06-17', y: 10, group: 1 },
+          { x: '2014-06-18', y: 15, group: 1 },
+          { x: '2014-06-19', y: 52, group: 1 },
+          { x: '2014-06-20', y: 10, group: 1 },
+          { x: '2014-06-21', y: 20, group: 2 },
+          { x: '2014-06-22', y: 60, group: 2 },
+          { x: '2014-06-23', y: 10, group: 2 },
+          { x: '2014-06-24', y: 25, group: 2 },
+          { x: '2014-06-25', y: 30, group: 2 },
+          { x: '2014-06-26', y: 20, group: 3 },
+          { x: '2014-06-27', y: 60, group: 3 },
+          { x: '2014-06-28', y: 10, group: 3 },
+          { x: '2014-06-29', y: 25, group: 3 },
+          { x: '2014-06-30', y: 30, group: 3 }
         ],
         options: {
-          defaultGroup: "ungrouped",
+          defaultGroup: 'ungrouped',
           legend: true,
-          start: "2014-06-10",
-          end: "2014-07-04"
+          start: '2014-06-10',
+          end: '2014-07-04'
         }
       },
-      networkEvents: "",
+      networkEvents: '',
       network: {
         nodes: [
-          { id: 1, label: "Node 1" },
-          { id: 2, label: "Node 2" },
-          { id: 3, label: "Node 3" },
-          { id: 4, label: "Node 4" },
-          { id: 5, label: "Node 5" }
+          { id: 1, label: 'Node 1' },
+          { id: 2, label: 'Node 2' },
+          { id: 3, label: 'Node 3' },
+          { id: 4, label: 'Node 4' },
+          { id: 5, label: 'Node 5' }
         ],
         edges: [
           { id: 1, from: 1, to: 3 },
@@ -189,7 +189,7 @@ export default {
         ],
         options: {
           nodes: {
-            shape: "circle"
+            shape: 'circle'
           }
         }
       }
@@ -202,8 +202,8 @@ export default {
   },
   methods: {
     networkEvent(eventName) {
-      if (this.networkEvents.length > 500) this.networkEvents = "";
-      this.networkEvents += eventName + ", ";
+      if (this.networkEvents.length > 500) this.networkEvents = '';
+      this.networkEvents += eventName + ', ';
     },
     addNode() {
       const id = new Date().getTime();
@@ -221,11 +221,11 @@ export default {
     resetNetwork() {
       this.network = {
         nodes: [
-          { id: 1, label: "Node 1" },
-          { id: 2, label: "Node 2" },
-          { id: 3, label: "Node 3" },
-          { id: 4, label: "Node 4" },
-          { id: 5, label: "Node 5" }
+          { id: 1, label: 'Node 1' },
+          { id: 2, label: 'Node 2' },
+          { id: 3, label: 'Node 3' },
+          { id: 4, label: 'Node 4' },
+          { id: 5, label: 'Node 5' }
         ],
         edges: [
           { id: 1, from: 1, to: 3 },

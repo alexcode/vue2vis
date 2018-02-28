@@ -3,30 +3,30 @@
 </template>
 
 <script>
-import vis from "vis";
+import vis from 'vis';
 
 const events = [
-  "click",
-  "contextmenu",
-  "doubleClick",
-  "drop",
-  "mouseOver",
-  "mouseDown",
-  "mouseUp",
-  "mouseMove",
-  "groupDragged",
-  "changed",
-  "rangechange",
-  "rangechanged",
-  "select",
-  "itemover",
-  "itemout",
-  "timechange",
-  "timechanged"
+  'click',
+  'contextmenu',
+  'doubleClick',
+  'drop',
+  'mouseOver',
+  'mouseDown',
+  'mouseUp',
+  'mouseMove',
+  'groupDragged',
+  'changed',
+  'rangechange',
+  'rangechanged',
+  'select',
+  'itemover',
+  'itemout',
+  'timechange',
+  'timechanged'
 ];
 
 export default {
-  name: "timeline",
+  name: 'timeline',
   props: {
     groups: {
       type: Array,
@@ -172,8 +172,8 @@ export default {
       this.timeline.on(eventName, props => this.$emit(eventName, props))
     );
     if (this.withTimeTick) {
-      this.timeline.on("currentTimeTick", props =>
-        this.$emit("currentTimeTick", props)
+      this.timeline.on('currentTimeTick', props =>
+        this.$emit('currentTimeTick', props)
       );
     }
   },
@@ -182,8 +182,8 @@ export default {
       this.timeline.off(eventName, props => this.$emit(eventName, props))
     );
     if (this.withTimeTick) {
-      this.timeline.off("currentTimeTick", props =>
-        this.$emit("currentTimeTick", props)
+      this.timeline.off('currentTimeTick', props =>
+        this.$emit('currentTimeTick', props)
       );
     }
   }

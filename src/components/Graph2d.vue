@@ -3,21 +3,21 @@
 </template>
 
 <script>
-import vis from "vis";
+import vis from 'vis';
 
 const events = [
-  "click",
-  "contextmenu",
-  "doubleClick",
-  "changed",
-  "rangechange",
-  "rangechanged",
-  "timechange",
-  "timechanged"
+  'click',
+  'contextmenu',
+  'doubleClick',
+  'changed',
+  'rangechange',
+  'rangechanged',
+  'timechange',
+  'timechanged'
 ];
 
 export default {
-  name: "graph2d",
+  name: 'graph2d',
   props: {
     groups: {
       type: Array,
@@ -119,8 +119,8 @@ export default {
       this.graph2d.on(eventName, props => this.$emit(eventName, props))
     );
     if (this.withTimeTick) {
-      this.timeline.on("currentTimeTick", props =>
-        this.$emit("currentTimeTick", props)
+      this.timeline.on('currentTimeTick', props =>
+        this.$emit('currentTimeTick', props)
       );
     }
   },
@@ -129,8 +129,8 @@ export default {
       this.graph2d.off(eventName, props => this.$emit(eventName, props))
     );
     if (this.withTimeTick) {
-      this.timeline.off("currentTimeTick", props =>
-        this.$emit("currentTimeTick", props)
+      this.timeline.off('currentTimeTick', props =>
+        this.$emit('currentTimeTick', props)
       );
     }
   }
