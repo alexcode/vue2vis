@@ -100,10 +100,10 @@ export default {
       this.network.destroy();
     },
     getNode(id) {
-      return this.$visNodes.get(id);
+      return this.visData.nodes.get(id);
     },
     getEdge(id) {
-      return this.$visEdges.get(id);
+      return this.visData.edges.get(id);
     },
     setOptions(options) {
       this.network.setOptions(options);
