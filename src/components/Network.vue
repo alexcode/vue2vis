@@ -117,11 +117,11 @@ export default {
         once(event, callback) {
             this.network.moveTo(event, callback);
         },
-        canvasToDom(x, y) {
-            return this.network.canvasToDom(x, y);
+        canvasToDom(p) {
+            return this.network.canvasToDOM(p);
         },
-        DomToCanvas(x, y) {
-            return this.network.DomToCanvas(x, y);
+        DomToCanvas(p) {
+            return this.network.DOMtoCanvas(p);
         },
         redraw() {
             this.network.redraw();
