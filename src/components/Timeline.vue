@@ -1,5 +1,5 @@
 <template>
-  <div ref="visualization"></div>
+    <div ref="visualization"></div>
 </template>
 
 <script>
@@ -22,7 +22,7 @@ const events = [
   'itemover',
   'itemout',
   'timechange',
-  'timechanged',
+  'timechanged'
 ];
 
 export default {
@@ -30,52 +30,52 @@ export default {
   props: {
     groups: {
       type: Array,
-      default: () => ([]),
+      default: () => []
     },
     items: {
       type: Array,
-      default: () => ([]),
+      default: () => []
     },
     selection: {
       type: [Array, String],
-      default: () => ([]),
+      default: () => []
     },
     options: {
-      type: Object,
+      type: Object
     },
     withTimeTick: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data: () => ({
-    timeline: null,
+    timeline: null
   }),
   watch: {
     items: {
       deep: true,
       handler(n) {
         this.timeline.setItems(new vis.DataSet(n));
-      },
+      }
     },
     groups: {
       deep: true,
       handler(v) {
         this.timeline.setGroups(new vis.DataSet(v));
-      },
+      }
     },
     options: {
       deep: true,
       handler(v) {
         this.timeline.setOptions(v);
-      },
+      }
     },
     selection: {
       deep: false,
       handler(v) {
         this.timeline.setSelection(v);
-      },
-    },
+      }
+    }
   },
   methods: {
     addCustomTime(time, id) {
@@ -161,25 +161,31 @@ export default {
     },
     zoomOut(percentage, options, callback) {
       this.timeline.zoomOut(percentage, options, callback);
-    },
+    }
   },
   mounted() {
     const container = this.$refs.visualization;
     const items = new vis.DataSet(this.items);
     const groups = new vis.DataSet(this.groups);
     this.timeline = new vis.Timeline(container, items, groups, this.options);
-    events.forEach(eventName => this.timeline.on(
-      eventName, props => this.$emit(eventName, props)));
+    events.forEach(eventName =>
+      this.timeline.on(eventName, props => this.$emit(eventName, props))
+    );
     if (this.withTimeTick) {
-      this.timeline.on('currentTimeTick', props => this.$emit('currentTimeTick', props));
+      this.timeline.on('currentTimeTick', props =>
+        this.$emit('currentTimeTick', props)
+      );
     }
   },
   beforeDestroy() {
-    events.forEach(eventName => this.timeline.off(
-      eventName, props => this.$emit(eventName, props)));
+    events.forEach(eventName =>
+      this.timeline.off(eventName, props => this.$emit(eventName, props))
+    );
     if (this.withTimeTick) {
-      this.timeline.off('currentTimeTick', props => this.$emit('currentTimeTick', props));
+      this.timeline.off('currentTimeTick', props =>
+        this.$emit('currentTimeTick', props)
+      );
     }
-  },
+  }
 };
 </script>

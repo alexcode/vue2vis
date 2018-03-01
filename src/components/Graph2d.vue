@@ -1,5 +1,5 @@
 <template>
-  <div ref="visualization"></div>
+    <div ref="visualization"></div>
 </template>
 
 <script>
@@ -13,7 +13,7 @@ const events = [
   'rangechange',
   'rangechanged',
   'timechange',
-  'timechanged',
+  'timechanged'
 ];
 
 export default {
@@ -21,38 +21,38 @@ export default {
   props: {
     groups: {
       type: Array,
-      default: () => ([]),
+      default: () => []
     },
     items: {
       type: Array,
-      default: () => ([]),
+      default: () => []
     },
     options: {
-      type: Object,
-    },
+      type: Object
+    }
   },
   data: () => ({
-    graph2d: null,
+    graph2d: null
   }),
   watch: {
     items: {
       deep: true,
       handler(n) {
         this.graph2d.setItems(new vis.DataSet(n));
-      },
+      }
     },
     groups: {
       deep: true,
       handler(v) {
         this.graph2d.setGroups(new vis.DataSet(v));
-      },
+      }
     },
     options: {
       deep: true,
       handler(v) {
         this.graph2d.setOptions(v);
-      },
-    },
+      }
+    }
   },
   methods: {
     destroy() {
@@ -108,25 +108,31 @@ export default {
     },
     setWindow(start, end) {
       this.graph2d.setWindow(start, end);
-    },
+    }
   },
   mounted() {
     const container = this.$refs.visualization;
     const items = new vis.DataSet(this.items);
     const groups = new vis.DataSet(this.groups);
     this.graph2d = new vis.Graph2d(container, items, groups, this.options);
-    events.forEach(eventName => this.graph2d.on(
-      eventName, props => this.$emit(eventName, props)));
+    events.forEach(eventName =>
+      this.graph2d.on(eventName, props => this.$emit(eventName, props))
+    );
     if (this.withTimeTick) {
-      this.timeline.on('currentTimeTick', props => this.$emit('currentTimeTick', props));
+      this.timeline.on('currentTimeTick', props =>
+        this.$emit('currentTimeTick', props)
+      );
     }
   },
   beforeDestroy() {
-    events.forEach(eventName => this.graph2d.off(
-      eventName, props => this.$emit(eventName, props)));
+    events.forEach(eventName =>
+      this.graph2d.off(eventName, props => this.$emit(eventName, props))
+    );
     if (this.withTimeTick) {
-      this.timeline.off('currentTimeTick', props => this.$emit('currentTimeTick', props));
+      this.timeline.off('currentTimeTick', props =>
+        this.$emit('currentTimeTick', props)
+      );
     }
-  },
+  }
 };
 </script>

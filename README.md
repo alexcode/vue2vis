@@ -100,7 +100,7 @@ Documentation [Graph2d](http://visjs.org/docs/graph2d)
 -   [x] Timeline
 -   [x] Graph2d
 -   [ ] Graph3d
--   [ ] Network
+-   [x] Network
 
 ## Change log
 
