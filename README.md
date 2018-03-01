@@ -135,6 +135,7 @@ If you discover any security related issues, please email infocontact.alex@gmail
 ## Credits
 
 - [Alex Couturon][link-author]
+- [João Menighin](https://github.com/Menighin)
 - [All Contributors][link-contributors]
 
 ## License
