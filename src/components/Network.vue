@@ -145,19 +145,19 @@ export default {
       return this.network.findNode(id);
     },
     getClusteredEdges(baseEdgeId) {
-      return this.network.getClusteredEdges(baseEdgeId);
+      return this.network.clustering.getClusteredEdges(baseEdgeId);
     },
     getBaseEdge(clusteredEdgeId) {
-      return this.network.getBaseEdge(clusteredEdgeId);
+      return this.network.clustering.getBaseEdge(clusteredEdgeId);
     },
     getBaseEdges(clusteredEdgeId) {
-      return this.network.getBaseEdges(clusteredEdgeId);
+      return this.network.clustering.getBaseEdges(clusteredEdgeId);
     },
     updateEdge(startEdgeId, options) {
-      this.network.updateEdge(startEdgeId, options);
+      this.network.clustering.updateEdge(startEdgeId, options);
     },
     updateClusteredNode(clusteredNodeId, options) {
-      this.network.updateClusteredNode(clusteredNodeId, options);
+      this.network.clustering.updateClusteredNode(clusteredNodeId, options);
     },
     isCluster(nodeId) {
       return this.network.isCluster(nodeId);
