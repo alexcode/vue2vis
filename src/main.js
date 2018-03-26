@@ -1,7 +1,9 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Timeline from './components/Timeline.vue';
+import Graph2d from './components/Graph2d.vue';
+import Network from './components/Network.vue';
 
-new Vue({
-  el: '#app',
-  render: h => h(App)
-})
+export {
+  Timeline,
+  Graph2d,
+  Network,
+};

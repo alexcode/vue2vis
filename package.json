@@ -1,6 +1,6 @@
 {
   "name": "vue2vis",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Vue2 component that helps with Visjs interaction",
   "jsnext": "dist/vue2vis.js",
   "main": "dist/vue2vis.min.js",
@@ -10,11 +10,9 @@
     "test": "test"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "build": "./scripts/build.sh",
     "lint": "eslint src/* test/*",
-    "beforePublish": "npm run lint && npm run build",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
-    "dist": "webpack --progress --hide-modules --config webpack.build.js && cross-env NODE_ENV=production webpack --progress --hide-modules --config  webpack.build.min.js"
+    "beforePublish": "npm run lint && npm run build"
   },
   "repository": {
     "type": "git",

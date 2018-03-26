@@ -113,20 +113,33 @@ $ npm run test
 ```
 
 ## Contributing
-
 Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details.
 
-To setup the development environment simply use
+### Build Setup
+
+``` bash
+# Once you have cloned this repo, install dependencies
+$ npm install
+
+# build for development and production with minification
+$ npm run build
 
 ```
-npm install
-```
 
-To get the component running with an example application use
+### Run demo locally
+``` bash
+# Run demo at localhost:8080
+$ npm link
+$ cd examples
+$ npm install
+$ npm link vue2vis
+# serve with hot reload at localhost:8080
+$ npm run dev
+```
+Go to <http://localhost:8080/> to see running examples
 
-```
-npm run dev
-```
+NOTE: If you make changes to the library you should run 'npm run build' again in the root folder.
+The dev server should detect modification and reload the demo
 
 ## Security
 
