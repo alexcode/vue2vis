@@ -47,7 +47,7 @@ Add the component in the template. You can bind [Visjs event](http://visjs.org/d
 ```html
 <body>
   <div id="app">
-    <timeline ref="timeline" :items="items" :groups="groups" :options="options">
+    <timeline ref="timeline" :items="items" :groups="groups" :options="options" :vis="vis">
     </timeline>
   </div>
 </body>
@@ -55,10 +55,14 @@ Add the component in the template. You can bind [Visjs event](http://visjs.org/d
 
 Add groups, items and options in your observed data or computed.
 ``` javascript
+
+import vis from 'vis';
+
 new Vue({
   el: '#app',
   data() {
     return {
+      vis: vis,
       groups: [{
       	id: 0,
         content: 'Group 1'
