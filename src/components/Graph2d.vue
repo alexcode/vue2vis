@@ -3,7 +3,6 @@
 </template>
 
 <script>
-import vis from 'vis';
 
 const events = [
   'click',
@@ -29,6 +28,10 @@ export default {
     },
     options: {
       type: Object
+    },
+    vis: {
+      type: Object,
+      required: true
     }
   },
   data: () => ({
@@ -38,13 +41,13 @@ export default {
     items: {
       deep: true,
       handler(n) {
-        this.graph2d.setItems(new vis.DataSet(n));
+        this.graph2d.setItems(new this.vis.DataSet(n));
       }
     },
     groups: {
       deep: true,
       handler(v) {
-        this.graph2d.setGroups(new vis.DataSet(v));
+        this.graph2d.setGroups(new this.vis.DataSet(v));
       }
     },
     options: {
@@ -112,9 +115,9 @@ export default {
   },
   mounted() {
     const container = this.$refs.visualization;
-    const items = new vis.DataSet(this.items);
-    const groups = new vis.DataSet(this.groups);
-    this.graph2d = new vis.Graph2d(container, items, groups, this.options);
+    const items = new this.vis.DataSet(this.items);
+    const groups = new this.vis.DataSet(this.groups);
+    this.graph2d = new this.vis.Graph2d(container, items, groups, this.options);
     events.forEach(eventName =>
       this.graph2d.on(eventName, props => this.$emit(eventName, props))
     );
