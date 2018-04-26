@@ -76,6 +76,9 @@ export default {
     getLegend(groupId, iconWidth, iconHeight) {
       return this.graph2d.getLegend(groupId, iconWidth, iconHeight);
     },
+    getWindow() {
+      return this.graph2d.getWindow();
+    },
     isGroupVisible(groupId) {
       return this.graph2d.isGroupVisible(groupId);
     },
@@ -83,10 +86,10 @@ export default {
       this.graph2d.moveTo(time, options);
     },
     on(event, callback) {
-      this.graph2d.moveTo(event, callback);
+      this.graph2d.on(event, callback);
     },
     off(event, callback) {
-      this.graph2d.moveTo(event, callback);
+      this.graph2d.off(event, callback);
     },
     redraw() {
       this.graph2d.redraw();
