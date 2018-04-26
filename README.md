@@ -79,7 +79,7 @@ new Vue({
 
 Add Visjs CSS
 ``` css
-@import "~vis/dist/vis.css";
+@import "vue2vis/dist/vue2vis.css";
 ```
 Here is a basic working demo with item generation:
 [JS Fiddle Basic Demo](https://jsfiddle.net/alexkodo/ejdut8fm/)

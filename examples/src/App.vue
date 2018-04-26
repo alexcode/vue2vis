@@ -253,7 +253,7 @@ export default {
 </script>
 
 <style>
-@import 'vis/dist/vis.css';
+@import 'vue2vis/dist/vue2vis.css';
 * {
   font-family: sans-serif;
 }

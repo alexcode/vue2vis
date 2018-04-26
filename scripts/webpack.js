@@ -1,8 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const config = module.exports = {
-  plugins: []
+  plugins: [
+    new ExtractTextPlugin("vue2vis.css"),
+  ]
 };
 
 // Set context to root of project
@@ -47,10 +50,16 @@ config.module = {
     {
       test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
       loader: 'file-loader',
-      exclude: /node_modules|vendor/,
       options: {
         name: 'images/[name].[ext]',
       }
+    },
+    {
+      test: /\.css$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: 'css-loader'
+      }),
     },
   ]
 };
