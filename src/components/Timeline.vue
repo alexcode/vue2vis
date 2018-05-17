@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import vis from 'vis';
+import { DataSet, Timeline } from 'vis';
 
 const events = [
   'click',
@@ -55,13 +55,13 @@ export default {
     items: {
       deep: true,
       handler(n) {
-        this.timeline.setItems(new vis.DataSet(n));
+        this.timeline.setItems(new DataSet(n));
       }
     },
     groups: {
       deep: true,
       handler(v) {
-        this.timeline.setGroups(new vis.DataSet(v));
+        this.timeline.setGroups(new DataSet(v));
       }
     },
     options: {
@@ -165,9 +165,9 @@ export default {
   },
   mounted() {
     const container = this.$refs.visualization;
-    const items = new vis.DataSet(this.items);
-    const groups = new vis.DataSet(this.groups);
-    this.timeline = new vis.Timeline(container, items, groups, this.options);
+    const items = new DataSet(this.items);
+    const groups = new DataSet(this.groups);
+    this.timeline = new Timeline(container, items, groups, this.options);
     events.forEach(eventName =>
       this.timeline.on(eventName, props => this.$emit(eventName, props))
     );

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import vis from 'vis';
+import { DataSet, Network } from 'vis';
 
 const events = [
   'click',
@@ -67,7 +67,7 @@ export default {
       deep: true,
       handler(n) {
         this.visData.nodes.update(n);
-        var newIds = new vis.DataSet(n).getIds();
+        var newIds = new DataSet(n).getIds();
         var oldIds = this.visData.nodes.getIds();
         var diff = getArrayDiff(oldIds, newIds);
         this.visData.nodes.remove(diff);
@@ -77,7 +77,7 @@ export default {
       deep: true,
       handler(e) {
         this.visData.edges.update(e);
-        var newIds = new vis.DataSet(e).getIds();
+        var newIds = new DataSet(e).getIds();
         var oldIds = this.visData.edges.getIds();
         var diff = getArrayDiff(oldIds, newIds);
         this.visData.edges.remove(diff);
@@ -92,8 +92,8 @@ export default {
   },
   methods: {
     setData(n, e) {
-      this.visData.nodes = new vis.DataSet(n);
-      this.visData.edges = new vis.DataSet(e);
+      this.visData.nodes = new DataSet(n);
+      this.visData.edges = new DataSet(e);
       this.network.setData(this.visData);
     },
     destroy() {
@@ -270,9 +270,9 @@ export default {
   },
   mounted() {
     const container = this.$refs.visualization;
-    this.visData.nodes = new vis.DataSet(this.nodes);
-    this.visData.edges = new vis.DataSet(this.edges);
-    this.network = new vis.Network(container, this.visData, this.options);
+    this.visData.nodes = new DataSet(this.nodes);
+    this.visData.edges = new DataSet(this.edges);
+    this.network = new Network(container, this.visData, this.options);
 
     events.forEach(eventName =>
       this.network.on(eventName, props => this.$emit(eventName, props))

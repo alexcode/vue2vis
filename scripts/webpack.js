@@ -31,6 +31,17 @@ config.resolve = {
   enforceExtension: false
 };
 
+config.externals = [{
+  'vis': {
+    umd: 'vis',
+    global: 'vis',
+    root: 'vis',
+    commonjs2: 'vis',
+    commonjs: 'vis',
+    amd: 'vis'
+  }
+}];
+
 config.resolveLoader = {
   modules: config.resolve.modules
 };

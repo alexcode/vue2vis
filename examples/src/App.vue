@@ -70,7 +70,6 @@
 </template>
 
 <script>
-// eslint-disable-next-line
 import { Timeline, Graph2d, Network } from 'vue2vis';
 
 export default {
