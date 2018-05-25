@@ -5,6 +5,7 @@
 <script>
 import { DataSet, Timeline } from 'vis';
 
+let timeline = null;
 const events = [
   'click',
   'contextmenu',
@@ -55,134 +56,134 @@ export default {
     items: {
       deep: true,
       handler(n) {
-        this.timeline.setItems(new DataSet(n));
+        timeline.setItems(new DataSet(n));
       }
     },
     groups: {
       deep: true,
       handler(v) {
-        this.timeline.setGroups(new DataSet(v));
+        timeline.setGroups(new DataSet(v));
       }
     },
     options: {
       deep: true,
       handler(v) {
-        this.timeline.setOptions(v);
+        timeline.setOptions(v);
       }
     },
     selection: {
       deep: false,
       handler(v) {
-        this.timeline.setSelection(v);
+        timeline.setSelection(v);
       }
     }
   },
   methods: {
     addCustomTime(time, id) {
-      return this.timeline.addCustomTime(time, id);
+      return timeline.addCustomTime(time, id);
     },
     destroy() {
-      this.timeline.destroy();
+      timeline.destroy();
     },
     fit() {
-      this.timeline.fit();
+      timeline.fit();
     },
     focus(id, options) {
-      this.timeline.focus(id, options);
+      timeline.focus(id, options);
     },
     getCurrentTime() {
-      return this.timeline.getCurrentTime();
+      return timeline.getCurrentTime();
     },
     getCustomTime(id) {
-      return this.timeline.getCustomTime(id);
+      return timeline.getCustomTime(id);
     },
     getEventProperties(event) {
-      return this.timeline.getEventProperties(event);
+      return timeline.getEventProperties(event);
     },
     getItemRange() {
-      return this.timeline.getItemRange();
+      return timeline.getItemRange();
     },
     getSelection() {
-      return this.timeline.getSelection();
+      return timeline.getSelection();
     },
     getVisibleItems() {
-      return this.timeline.getVisibleItems();
+      return timeline.getVisibleItems();
     },
     getWindow() {
-      return this.timeline.getWindow();
+      return timeline.getWindow();
     },
     moveTo(time, options) {
-      this.timeline.moveTo(time, options);
+      timeline.moveTo(time, options);
     },
     on(event, callback) {
-      this.timeline.moveTo(event, callback);
+      timeline.moveTo(event, callback);
     },
     off(event, callback) {
-      this.timeline.moveTo(event, callback);
+      timeline.moveTo(event, callback);
     },
     redraw() {
-      this.timeline.redraw();
+      timeline.redraw();
     },
     removeCustomTime(id) {
-      this.timeline.removeCustomTime(id);
+      timeline.removeCustomTime(id);
     },
     setCurrentTime(time) {
-      this.timeline.setCurrentTime(time);
+      timeline.setCurrentTime(time);
     },
     setCustomTime(time, id) {
-      this.timeline.setCustomTime(time, id);
+      timeline.setCustomTime(time, id);
     },
     setCustomTimeTitle(title, id) {
-      this.timeline.setCustomTimeTitle(title, id);
+      timeline.setCustomTimeTitle(title, id);
     },
     setData(object) {
-      this.timeline.setData(object);
+      timeline.setData(object);
     },
     setGroups(groups) {
-      this.timeline.setGroups(groups);
+      timeline.setGroups(groups);
     },
     setItems(items) {
-      this.timeline.setItems(items);
+      timeline.setItems(items);
     },
     setOptions(options) {
-      this.timeline.setOptions(options);
+      timeline.setOptions(options);
     },
     setSelection(ids, options) {
-      this.timeline.setSelection(ids, options);
+      timeline.setSelection(ids, options);
     },
     setWindow(start, end, options, callback) {
-      this.timeline.setWindow(start, end, options, callback);
+      timeline.setWindow(start, end, options, callback);
     },
     toggleRollingMode() {
-      this.timeline.toggleRollingMode();
+      timeline.toggleRollingMode();
     },
     zoomIn(percentage, options, callback) {
-      this.timeline.zoomIn(percentage, options, callback);
+      timeline.zoomIn(percentage, options, callback);
     },
     zoomOut(percentage, options, callback) {
-      this.timeline.zoomOut(percentage, options, callback);
+      timeline.zoomOut(percentage, options, callback);
     }
   },
   mounted() {
     const container = this.$refs.visualization;
     const items = new DataSet(this.items);
     const groups = new DataSet(this.groups);
-    this.timeline = new Timeline(container, items, groups, this.options);
+    timeline = new Timeline(container, items, groups, this.options);
     events.forEach(eventName =>
-      this.timeline.on(eventName, props => this.$emit(eventName, props))
+      timeline.on(eventName, props => this.$emit(eventName, props))
     );
     if (this.withTimeTick) {
-      this.timeline.on('currentTimeTick', props =>
+      timeline.on('currentTimeTick', props =>
         this.$emit('currentTimeTick', props)
       );
     }
   },
   beforeDestroy() {
     events.forEach(eventName =>
-      this.timeline.off(eventName, props => this.$emit(eventName, props))
+      timeline.off(eventName, props => this.$emit(eventName, props))
     );
     if (this.withTimeTick) {
-      this.timeline.off('currentTimeTick', props =>
+      timeline.off('currentTimeTick', props =>
         this.$emit('currentTimeTick', props)
       );
     }
