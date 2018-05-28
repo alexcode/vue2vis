@@ -37,7 +37,14 @@
     @afterDrawing="networkEvent('afterDrawing')"
     @animationFinished="networkEvent('animationFinished')"
     @configChange="networkEvent('configChange')"
-    >
+    @nodes-mounted="networkEvent('nodes-mounted')"
+    @nodes-add="networkEvent('nodes-add')"
+    @nodes-update="networkEvent('nodes-update')"
+    @nodes-remove="networkEvent('nodes-remove')"
+    @edges-mounted="networkEvent('edges-mounted')"
+    @edges-add="networkEvent('edges-add')"
+    @edges-update="networkEvent('edges-update')"
+    @edges-remove="networkEvent('edges-remove')">
   </network>
   <button @click="addNode">Add node</button>
   <button @click="addEdge">Add edge</button>
@@ -53,8 +60,35 @@
   ref="timeline"
   :items="timeline.items"
   :groups="timeline.groups"
-  :options="timeline.options">
+  :options="timeline.options"
+  @click="timelineEvent('click')"
+  @contextmenu="timelineEvent('contextmenu')"
+  @currentTimeTick="timelineEvent('currentTimeTick')"
+  @doubleClick="timelineEvent('doubleClick')"
+  @drop="timelineEvent('drop')"
+  @mouseOver="timelineEvent('mouseOver')"
+  @mouseDown="timelineEvent('mouseDown')"
+  @mouseUp="timelineEvent('mouseUp')"
+  @mouseMove="timelineEvent('mouseMove')"
+  @groupDragged="timelineEvent('groupDragged')"
+  @changed="timelineEvent('changed')"
+  @rangechange="timelineEvent('rangechange')"
+  @rangechanged="timelineEvent('rangechanged')"
+  @select="timelineEvent('select')"
+  @itemover="timelineEvent('itemover')"
+  @itemout="timelineEvent('itemout')"
+  @timechange="timelineEvent('timechange')"
+  @timechanged="timelineEvent('timechanged')"
+  @items-mounted="timelineEvent('items-mounted')"
+  @items-add="timelineEvent('items-add')"
+  @items-update="timelineEvent('items-update')"
+  @items-remove="timelineEvent('items-remove')"
+  @groups-mounted="timelineEvent('groups-mounted')"
+  @groups-add="timelineEvent('groups-add')"
+  @groups-update="timelineEvent('groups-update')"
+  @groups-remove="timelineEvent('groups-remove')">
   </timeline>
+  <div class="events"><p>Timeline events: <br /> {{timelineEvents}}</p></div>
 
   <hr>
 
@@ -63,8 +97,25 @@
   ref="graph2d"
   :items="graph2d.items"
   :groups="graph2d.groups"
-  :options="graph2d.options">
+  :options="graph2d.options"
+  @click="graph2dEvent('click')"
+  @contextmenu="graph2dEvent('contextmenu')"
+  @currentTimeTick="graph2dEvent('currentTimeTick')"
+  @doubleClick="graph2dEvent('doubleClick')"
+  @changed="graph2dEvent('changed')"
+  @rangechange="graph2dEvent('rangechange')"
+  @rangechanged="graph2dEvent('rangechanged')"
+  @timechange="graph2dEvent('timechange')"
+  @timechanged="graph2dEvent('timechanged')"
+  @items-add="graph2dEvent('items-add')"
+  @items-update="graph2dEvent('items-update')"
+  @items-remove="graph2dEvent('items-remove')"
+  @groups-mounted="graph2dEvent('groups-mounted')"
+  @groups-add="graph2dEvent('groups-add')"
+  @groups-update="graph2dEvent('groups-update')"
+  @groups-remove="graph2dEvent('groups-remove')">
   </graph-2d>
+  <div class="events"><p>Graph2d events: <br /> {{graph2dEvents}}</p></div>
 
 </div>
 </template>
@@ -74,6 +125,7 @@ import { Timeline, Graph2d, Network } from 'vue2vis';
 
 export default {
   data: () => ({
+    timelineEvents: '',
     timeline: {
       groups: [
         {
@@ -105,6 +157,7 @@ export default {
         editable: true,
       },
     },
+    graph2dEvents: '',
     graph2d: {
       groups: [
         {
@@ -208,6 +261,14 @@ export default {
     networkEvent(eventName) {
       if (this.networkEvents.length > 500) this.networkEvents = '';
       this.networkEvents += `${eventName}, `;
+    },
+    timelineEvent(eventName) {
+      if (this.timelineEvents.length > 500) this.timelineEvents = '';
+      this.timelineEvents += `${eventName}, `;
+    },
+    graph2dEvent(eventName) {
+      if (this.graph2dEvents.length > 500) this.graph2dEvents = '';
+      this.graph2dEvents += `${eventName}, `;
     },
     addNode() {
       const id = new Date().getTime();

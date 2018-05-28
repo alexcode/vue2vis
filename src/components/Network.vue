@@ -7,38 +7,6 @@ import { DataSet, DataView, Network } from 'vis';
 import { mountVisData } from '../utils';
 
 let network = null;
-const events = [
-  'click',
-  'doubleClick',
-  'oncontext',
-  'hold',
-  'release',
-  'select',
-  'selectNode',
-  'selectEdge',
-  'deselectNode',
-  'deselectEdge',
-  'dragStart',
-  'dragging',
-  'dragEnd',
-  'hoverNode',
-  'blurNode',
-  'hoverEdge',
-  'blurEdge',
-  'zoom',
-  'showPopup',
-  'hidePopup',
-  'startStabilizing',
-  'stabilizationProgress',
-  'stabilizationIterationsDone',
-  'stabilized',
-  'resize',
-  'initRedraw',
-  'beforeDrawing',
-  'afterDrawing',
-  'animationFinished',
-  'configChange'
-];
 
 export default {
   name: 'network',
@@ -50,6 +18,41 @@ export default {
     nodes: {
       type: [Array, DataSet, DataView],
       default: () => []
+    },
+    events: {
+      type: Array,
+      default: () => [
+        'click',
+        'doubleClick',
+        'oncontext',
+        'hold',
+        'release',
+        'select',
+        'selectNode',
+        'selectEdge',
+        'deselectNode',
+        'deselectEdge',
+        'dragStart',
+        'dragging',
+        'dragEnd',
+        'hoverNode',
+        'blurNode',
+        'hoverEdge',
+        'blurEdge',
+        'zoom',
+        'showPopup',
+        'hidePopup',
+        'startStabilizing',
+        'stabilizationProgress',
+        'stabilizationIterationsDone',
+        'stabilized',
+        'resize',
+        'initRedraw',
+        'beforeDrawing',
+        'afterDrawing',
+        'animationFinished',
+        'configChange'
+      ],
     },
     options: {
       type: Object,
@@ -254,7 +257,7 @@ export default {
     this.visData.edges = mountVisData(this, 'edges');
     network = new Network(container, this.visData, this.options);
 
-    events.forEach(eventName =>
+    this.events.forEach(eventName =>
       network.on(eventName, props => this.$emit(eventName, props))
     );
   },

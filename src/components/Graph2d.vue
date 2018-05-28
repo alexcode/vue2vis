@@ -7,16 +7,6 @@ import { DataSet, DataView, Graph2d } from 'vis';
 import { mountVisData } from '../utils';
 
 let graph2d = null;
-const events = [
-  'click',
-  'contextmenu',
-  'doubleClick',
-  'changed',
-  'rangechange',
-  'rangechanged',
-  'timechange',
-  'timechanged'
-];
 
 export default {
   name: 'graph2d',
@@ -28,6 +18,20 @@ export default {
     items: {
       type: [Array, DataSet, DataView],
       default: () => []
+    },
+    events: {
+      type: Array,
+      default: () => [
+        'click',
+        'contextmenu',
+        'currentTimeTick',
+        'doubleClick',
+        'changed',
+        'rangechange',
+        'rangechanged',
+        'timechange',
+        'timechanged'
+      ],
     },
     options: {
       type: Object
@@ -111,14 +115,10 @@ export default {
     this.visData.items = mountVisData(this, 'items');
     this.visData.groups = mountVisData(this, 'groups');
     graph2d = new Graph2d(container, this.visData.items, this.visData.groups, this.options);
-    events.forEach(eventName =>
+
+    this.events.forEach(eventName =>
       graph2d.on(eventName, props => this.$emit(eventName, props))
     );
-    if (this.withTimeTick) {
-      this.timeline.on('currentTimeTick', props =>
-        this.$emit('currentTimeTick', props)
-      );
-    }
   },
   beforeDestroy() {
     graph2d.destroy();

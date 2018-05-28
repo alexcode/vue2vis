@@ -7,25 +7,6 @@ import { DataSet, DataView, Timeline } from 'vis';
 import { mountVisData } from '../utils';
 
 let timeline = null;
-const events = [
-  'click',
-  'contextmenu',
-  'doubleClick',
-  'drop',
-  'mouseOver',
-  'mouseDown',
-  'mouseUp',
-  'mouseMove',
-  'groupDragged',
-  'changed',
-  'rangechange',
-  'rangechanged',
-  'select',
-  'itemover',
-  'itemout',
-  'timechange',
-  'timechanged'
-];
 
 export default {
   name: 'timeline',
@@ -37,6 +18,29 @@ export default {
     items: {
       type: [Array, DataSet, DataView],
       default: () => []
+    },
+    events: {
+      type: Array,
+      default: () => [
+        'click',
+        'contextmenu',
+        'currentTimeTick',
+        'doubleClick',
+        'drop',
+        'mouseOver',
+        'mouseDown',
+        'mouseUp',
+        'mouseMove',
+        'groupDragged',
+        'changed',
+        'rangechange',
+        'rangechanged',
+        'select',
+        'itemover',
+        'itemout',
+        'timechange',
+        'timechanged'
+      ],
     },
     selection: {
       type: [Array, String],
@@ -162,14 +166,9 @@ export default {
     this.visData.groups = mountVisData(this, 'groups');
     timeline = new Timeline(container, this.visData.items, this.visData.groups, this.options);
 
-    events.forEach(eventName =>
+    this.events.forEach(eventName =>
       timeline.on(eventName, props => this.$emit(eventName, props))
     );
-    if (this.withTimeTick) {
-      timeline.on('currentTimeTick', props =>
-        this.$emit('currentTimeTick', props)
-      );
-    }
   },
   beforeDestroy() {
     timeline.destroy();
