@@ -3,7 +3,8 @@
 </template>
 
 <script>
-import { DataSet, Graph2d } from 'vis';
+import { DataSet, DataView, Graph2d } from 'vis';
+import { mountVisData } from '../utils';
 
 let graph2d = null;
 const events = [
@@ -21,30 +22,24 @@ export default {
   name: 'graph2d',
   props: {
     groups: {
-      type: Array,
+      type: [Array, DataSet, DataView],
       default: () => []
     },
     items: {
-      type: Array,
+      type: [Array, DataSet, DataView],
       default: () => []
     },
     options: {
       type: Object
     }
   },
+  data: () => ({
+    visData: {
+      items: null,
+      groups: null,
+    },
+  }),
   watch: {
-    items: {
-      deep: true,
-      handler(n) {
-        graph2d.setItems(new DataSet(n));
-      }
-    },
-    groups: {
-      deep: true,
-      handler(v) {
-        graph2d.setGroups(new DataSet(v));
-      }
-    },
     options: {
       deep: true,
       handler(v) {
@@ -113,9 +108,9 @@ export default {
   },
   mounted() {
     const container = this.$refs.visualization;
-    const items = new DataSet(this.items);
-    const groups = new DataSet(this.groups);
-    graph2d = new Graph2d(container, items, groups, this.options);
+    this.visData.items = mountVisData(this, 'items');
+    this.visData.groups = mountVisData(this, 'groups');
+    graph2d = new Graph2d(container, this.visData.items, this.visData.groups, this.options);
     events.forEach(eventName =>
       graph2d.on(eventName, props => this.$emit(eventName, props))
     );
