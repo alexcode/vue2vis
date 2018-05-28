@@ -1,19 +1,15 @@
 import { DataSet, DataView } from 'vis';
 
-const arrayDiff = function(arr1, arr2) {
-  return arr1.filter(x => arr2.indexOf(x) === -1);
-};
+const arrayDiff = (arr1, arr2) => arr1.filter(x => arr2.indexOf(x) === -1);
 
 const mountVisData = (vm, propName) => {
+  let data = vm[propName];
   // If data is DataSet or DataView we return early without attaching our own events
-  if (vm[propName] instanceof DataSet || vm[propName] instanceof DataView) {
-    vm.visData[propName] = vm[propName];
-  } else {
-    vm.visData[propName] = new DataSet(vm[propName]);
+  if (!(vm[propName] instanceof DataSet) || !(vm[propName] instanceof DataView)) {
+    data = new DataSet(vm[propName]);
     // Rethrow all events
-    vm.visData[propName].on('*', (event, properties, senderId) =>
-      vm.$emit(`${propName}-${event}`, { event, properties, senderId })
-    );
+    data.on('*', (event, properties, senderId) =>
+      vm.$emit(`${propName}-${event}`, { event, properties, senderId }));
     // We attach deep watcher on the prop to propagate changes in the DataSet
     const callback = (value) => {
       if (Array.isArray(value)) {
@@ -25,14 +21,14 @@ const mountVisData = (vm, propName) => {
     };
 
     vm.$watch(propName, callback, {
-      deep: true
+      deep: true,
     });
   }
 
   // Emitting DataSets back
-  vm.$emit(`${propName}-mounted`, vm.visData[propName]);
+  vm.$emit(`${propName}-mounted`, data);
 
-  return vm.visData[propName];
+  return data;
 };
 
 export {

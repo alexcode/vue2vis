@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import { DataSet, Timeline } from 'vis';
-import { arrayDiff, mountVisData } from '../utils';
+import { DataSet, DataView, Timeline } from 'vis';
+import { mountVisData } from '../utils';
 
 let timeline = null;
 const events = [
@@ -31,11 +31,11 @@ export default {
   name: 'timeline',
   props: {
     groups: {
-      type: [Array, DataSet],
+      type: [Array, DataSet, DataView],
       default: () => []
     },
     items: {
-      type: [Array, DataSet],
+      type: [Array, DataSet, DataView],
       default: () => []
     },
     selection: {
@@ -158,12 +158,9 @@ export default {
   },
   mounted() {
     const container = this.$refs.visualization;
-    timeline = new Timeline(
-      container,
-      mountVisData(this, 'items'),
-      mountVisData(this, 'groups'),
-      this.options
-    );
+    this.visData.items = mountVisData(this, 'items');
+    this.visData.groups = mountVisData(this, 'groups');
+    timeline = new Timeline(container, this.visData.items, this.visData.groups, this.options);
 
     events.forEach(eventName =>
       timeline.on(eventName, props => this.$emit(eventName, props))

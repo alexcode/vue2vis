@@ -3,7 +3,8 @@
 </template>
 
 <script>
-import { DataSet, Network } from 'vis';
+import { DataSet, DataView, Network } from 'vis';
+import { mountVisData } from '../utils';
 
 let network = null;
 const events = [
@@ -43,11 +44,11 @@ export default {
   name: 'network',
   props: {
     edges: {
-      type: Array,
+      type: [Array, DataSet, DataView],
       default: () => []
     },
     nodes: {
-      type: Array,
+      type: [Array, DataSet, DataView],
       default: () => []
     },
     options: {
@@ -62,26 +63,6 @@ export default {
     }
   }),
   watch: {
-    nodes: {
-      deep: true,
-      handler(n) {
-        this.visData.nodes.update(n);
-        var newIds = new DataSet(n).getIds();
-        var oldIds = this.visData.nodes.getIds();
-        var diff = getArrayDiff(oldIds, newIds);
-        this.visData.nodes.remove(diff);
-      }
-    },
-    edges: {
-      deep: true,
-      handler(e) {
-        this.visData.edges.update(e);
-        var newIds = new DataSet(e).getIds();
-        var oldIds = this.visData.edges.getIds();
-        var diff = getArrayDiff(oldIds, newIds);
-        this.visData.edges.remove(diff);
-      }
-    },
     options: {
       deep: true,
       handler(o) {
@@ -91,8 +72,8 @@ export default {
   },
   methods: {
     setData(n, e) {
-      this.visData.nodes = new DataSet(n);
-      this.visData.edges = new DataSet(e);
+      this.visData.nodes = Array.isArray(n) ? new DataSet(n) : n;
+      this.visData.edges =  Array.isArray(e) ? new DataSet(e) : e;
       network.setData(this.visData);
     },
     destroy() {
@@ -117,10 +98,10 @@ export default {
       network.moveTo(event, callback);
     },
     canvasToDom(p) {
-      return  network.canvasToDOM(p);
+      return network.canvasToDOM(p);
     },
     domToCanvas(p) {
-      return  network.DOMtoCanvas(p);
+      return network.DOMtoCanvas(p);
     },
     redraw() {
       network.redraw();
@@ -141,16 +122,16 @@ export default {
       network.clusterOutliers(options);
     },
     findNode(id) {
-      return  network.findNode(id);
+      return network.findNode(id);
     },
     getClusteredEdges(baseEdgeId) {
-      return  network.clustering.getClusteredEdges(baseEdgeId);
+      return network.clustering.getClusteredEdges(baseEdgeId);
     },
     getBaseEdge(clusteredEdgeId) {
-      return  network.clustering.getBaseEdge(clusteredEdgeId);
+      return network.clustering.getBaseEdge(clusteredEdgeId);
     },
     getBaseEdges(clusteredEdgeId) {
-      return  network.clustering.getBaseEdges(clusteredEdgeId);
+      return network.clustering.getBaseEdges(clusteredEdgeId);
     },
     updateEdge(startEdgeId, options) {
       network.clustering.updateEdge(startEdgeId, options);
@@ -159,16 +140,16 @@ export default {
       network.clustering.updateClusteredNode(clusteredNodeId, options);
     },
     isCluster(nodeId) {
-      return  network.isCluster(nodeId);
+      return network.isCluster(nodeId);
     },
     getNodesInCluster(clusterNodeId) {
-      return  network.getNodesInCluster(clusterNodeId);
+      return network.getNodesInCluster(clusterNodeId);
     },
     openCluster(nodeId, options) {
       network.openCluster(nodeId, options);
     },
     getSeed() {
-      return  network.getSeed();
+      return network.getSeed();
     },
     enableEditMode() {
       network.enableEditMode();
@@ -192,7 +173,7 @@ export default {
       network.deleteSelected();
     },
     getPositions(nodeIds) {
-      return  network.getPositions(nodeIds);
+      return network.getPositions(nodeIds);
     },
     storePositions() {
       network.storePositions();
@@ -201,13 +182,13 @@ export default {
       network.moveNode(nodeId, x, y);
     },
     getBoundingBox(nodeId) {
-      return  network.getBoundingBox(nodeId);
+      return network.getBoundingBox(nodeId);
     },
     getConnectedNodes(nodeId, direction) {
-      return  network.getConnectedNodes(nodeId, direction);
+      return network.getConnectedNodes(nodeId, direction);
     },
     getConnectedEdges(nodeId) {
-      return  network.getConnectedEdges(nodeId);
+      return network.getConnectedEdges(nodeId);
     },
     startSimulation() {
       network.startSimulation();
@@ -219,19 +200,19 @@ export default {
       network.stabilize(iterations);
     },
     getSelection() {
-      return  network.getSelection();
+      return network.getSelection();
     },
     getSelectedNodes() {
-      return  network.getSelectedNodes();
+      return network.getSelectedNodes();
     },
     getSelectedEdges() {
-      return  network.getSelectedEdges();
+      return network.getSelectedEdges();
     },
     getNodeAt(p) {
-      return  network.getNodeAt(p);
+      return network.getNodeAt(p);
     },
     getEdgeAt(p) {
-      return  network.getEdgeAt(p);
+      return network.getEdgeAt(p);
     },
     selectNodes(nodeIds, highlightEdges) {
       network.selectNodes(nodeIds, highlightEdges);
@@ -246,10 +227,10 @@ export default {
       network.unselectAll();
     },
     getScale() {
-      return  network.getScale();
+      return network.getScale();
     },
     getViewPosition() {
-      return  network.getViewPosition();
+      return network.getViewPosition();
     },
     fit(options) {
       network.fit(options);
@@ -264,13 +245,13 @@ export default {
       network.releaseNode();
     },
     getOptionsFromConfigurator() {
-      return  network.getOptionsFromConfigurator();
+      return network.getOptionsFromConfigurator();
     }
   },
   mounted() {
     const container = this.$refs.visualization;
-    this.visData.nodes = new DataSet(this.nodes);
-    this.visData.edges = new DataSet(this.edges);
+    this.visData.nodes = mountVisData(this, 'nodes');
+    this.visData.edges = mountVisData(this, 'edges');
     network = new Network(container, this.visData, this.options);
 
     events.forEach(eventName =>
@@ -278,14 +259,7 @@ export default {
     );
   },
   beforeDestroy() {
-    events.forEach(eventName =>
-      network.off(eventName, props => this.$emit(eventName, props))
-    );
+    network.destroy();
   },
 };
-
-// Helpers
-function getArrayDiff(arr1, arr2) {
-  return arr1.filter(x => !arr2.includes(x));
-}
 </script>
