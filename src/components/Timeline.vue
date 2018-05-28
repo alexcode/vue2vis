@@ -4,6 +4,7 @@
 
 <script>
 import { DataSet, Timeline } from 'vis';
+import { arrayDiff, mountVisData } from '../utils';
 
 let timeline = null;
 const events = [
@@ -30,11 +31,11 @@ export default {
   name: 'timeline',
   props: {
     groups: {
-      type: Array,
+      type: [Array, DataSet],
       default: () => []
     },
     items: {
-      type: Array,
+      type: [Array, DataSet],
       default: () => []
     },
     selection: {
@@ -50,21 +51,12 @@ export default {
     }
   },
   data: () => ({
-    timeline: null
+    visData: {
+      items: null,
+      groups: null,
+    },
   }),
   watch: {
-    items: {
-      deep: true,
-      handler(n) {
-        timeline.setItems(new DataSet(n));
-      }
-    },
-    groups: {
-      deep: true,
-      handler(v) {
-        timeline.setGroups(new DataSet(v));
-      }
-    },
     options: {
       deep: true,
       handler(v) {
@@ -166,9 +158,13 @@ export default {
   },
   mounted() {
     const container = this.$refs.visualization;
-    const items = new DataSet(this.items);
-    const groups = new DataSet(this.groups);
-    timeline = new Timeline(container, items, groups, this.options);
+    timeline = new Timeline(
+      container,
+      mountVisData(this, 'items'),
+      mountVisData(this, 'groups'),
+      this.options
+    );
+
     events.forEach(eventName =>
       timeline.on(eventName, props => this.$emit(eventName, props))
     );
@@ -179,14 +175,7 @@ export default {
     }
   },
   beforeDestroy() {
-    events.forEach(eventName =>
-      timeline.off(eventName, props => this.$emit(eventName, props))
-    );
-    if (this.withTimeTick) {
-      timeline.off('currentTimeTick', props =>
-        this.$emit('currentTimeTick', props)
-      );
-    }
+    timeline.destroy();
   }
 };
 </script>
