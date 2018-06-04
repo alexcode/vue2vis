@@ -49,10 +49,6 @@ export default {
     options: {
       type: Object
     },
-    withTimeTick: {
-      type: Boolean,
-      default: false
-    }
   },
   data: () => ({
     visData: {
