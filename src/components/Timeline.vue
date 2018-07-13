@@ -4,7 +4,7 @@
 
 <script>
 import { DataSet, DataView, Timeline } from 'vis';
-import { mountVisData } from '../utils';
+import { mountVisData, translateEvent } from '../utils';
 
 let timeline = null;
 
@@ -162,8 +162,8 @@ export default {
     this.visData.groups = mountVisData(this, 'groups');
     timeline = new Timeline(container, this.visData.items, this.visData.groups, this.options);
 
-    this.events.forEach(eventName =>
-      timeline.on(eventName, props => this.$emit(eventName, props))
+    this.events.forEach(  eventName =>
+      timeline.on(eventName, props => this.$emit(translateEvent(eventName), props))
     );
   },
   beforeDestroy() {
