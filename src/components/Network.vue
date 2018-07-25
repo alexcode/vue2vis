@@ -6,8 +6,6 @@
 import { DataSet, DataView, Network } from 'vis';
 import { mountVisData, translateEvent } from '../utils';
 
-let network = null;
-
 export default {
   name: 'network',
   props: {
@@ -69,7 +67,7 @@ export default {
     options: {
       deep: true,
       handler(o) {
-        network.setOptions(o);
+        this.network.setOptions(o);
       }
     }
   },
@@ -77,10 +75,10 @@ export default {
     setData(n, e) {
       this.visData.nodes = Array.isArray(n) ? new DataSet(n) : n;
       this.visData.edges =  Array.isArray(e) ? new DataSet(e) : e;
-      network.setData(this.visData);
+      this.network.setData(this.visData);
     },
     destroy() {
-      network.destroy();
+      this.network.destroy();
     },
     getNode(id) {
       return this.visData.nodes.get(id);
@@ -89,180 +87,185 @@ export default {
       return this.visData.edges.get(id);
     },
     setOptions(options) {
-      network.setOptions(options);
+      this.network.setOptions(options);
     },
     on(event, callback) {
-      network.moveTo(event, callback);
+      this.network.moveTo(event, callback);
     },
     off(event, callback) {
-      network.moveTo(event, callback);
+      this.network.moveTo(event, callback);
     },
     once(event, callback) {
-      network.moveTo(event, callback);
+      this.network.moveTo(event, callback);
     },
     canvasToDom(p) {
-      return network.canvasToDOM(p);
+      return this.network.canvasToDOM(p);
     },
     domToCanvas(p) {
-      return network.DOMtoCanvas(p);
+      return this.network.DOMtoCanvas(p);
     },
     redraw() {
-      network.redraw();
+      this.network.redraw();
     },
     setSize(w, h) {
-      network.setSize(w, h);
+      this.network.setSize(w, h);
     },
     cluster(options) {
-      network.cluster(options);
+      this.network.cluster(options);
     },
     clusterByConnection(nodeId, options) {
-      network.clusterByConnection(nodeId, options);
+      this.network.clusterByConnection(nodeId, options);
     },
     clusterByHubsize(hubsize, options) {
-      network.clusterByHubsize(hubsize, options);
+      this.network.clusterByHubsize(hubsize, options);
     },
     clusterOutliers(options) {
-      network.clusterOutliers(options);
+      this.network.clusterOutliers(options);
     },
     findNode(id) {
-      return network.findNode(id);
+      return this.network.findNode(id);
     },
     getClusteredEdges(baseEdgeId) {
-      return network.clustering.getClusteredEdges(baseEdgeId);
+      return this.network.clustering.getClusteredEdges(baseEdgeId);
     },
     getBaseEdge(clusteredEdgeId) {
-      return network.clustering.getBaseEdge(clusteredEdgeId);
+      return this.network.clustering.getBaseEdge(clusteredEdgeId);
     },
     getBaseEdges(clusteredEdgeId) {
-      return network.clustering.getBaseEdges(clusteredEdgeId);
+      return this.network.clustering.getBaseEdges(clusteredEdgeId);
     },
     updateEdge(startEdgeId, options) {
-      network.clustering.updateEdge(startEdgeId, options);
+      this.network.clustering.updateEdge(startEdgeId, options);
     },
     updateClusteredNode(clusteredNodeId, options) {
-      network.clustering.updateClusteredNode(clusteredNodeId, options);
+      this.network.clustering.updateClusteredNode(clusteredNodeId, options);
     },
     isCluster(nodeId) {
-      return network.isCluster(nodeId);
+      return this.network.isCluster(nodeId);
     },
     getNodesInCluster(clusterNodeId) {
-      return network.getNodesInCluster(clusterNodeId);
+      return this.network.getNodesInCluster(clusterNodeId);
     },
     openCluster(nodeId, options) {
-      network.openCluster(nodeId, options);
+      this.network.openCluster(nodeId, options);
     },
     getSeed() {
-      return network.getSeed();
+      return this.network.getSeed();
     },
     enableEditMode() {
-      network.enableEditMode();
+      this.network.enableEditMode();
     },
     disableEditMode() {
-      network.disableEditMode();
+      this.network.disableEditMode();
     },
     addNodeMode() {
-      network.addNodeMode();
+      this.network.addNodeMode();
     },
     editNode() {
-      network.editNode();
+      this.network.editNode();
     },
     addEdgeMode() {
-      network.addEdgeMode();
+      this.network.addEdgeMode();
     },
     editEdgeMode() {
-      network.editEdgeMode();
+      this.network.editEdgeMode();
     },
     deleteSelected() {
-      network.deleteSelected();
+      this.network.deleteSelected();
     },
     getPositions(nodeIds) {
-      return network.getPositions(nodeIds);
+      return this.network.getPositions(nodeIds);
     },
     storePositions() {
-      network.storePositions();
+      this.network.storePositions();
     },
     moveNode(nodeId, x, y) {
-      network.moveNode(nodeId, x, y);
+      this.network.moveNode(nodeId, x, y);
     },
     getBoundingBox(nodeId) {
-      return network.getBoundingBox(nodeId);
+      return this.network.getBoundingBox(nodeId);
     },
     getConnectedNodes(nodeId, direction) {
-      return network.getConnectedNodes(nodeId, direction);
+      return this.network.getConnectedNodes(nodeId, direction);
     },
     getConnectedEdges(nodeId) {
-      return network.getConnectedEdges(nodeId);
+      return this.network.getConnectedEdges(nodeId);
     },
     startSimulation() {
-      network.startSimulation();
+      this.network.startSimulation();
     },
     stopSimulation() {
-      network.stopSimulation();
+      this.network.stopSimulation();
     },
     stabilize(iterations) {
-      network.stabilize(iterations);
+      this.network.stabilize(iterations);
     },
     getSelection() {
-      return network.getSelection();
+      return this.network.getSelection();
     },
     getSelectedNodes() {
-      return network.getSelectedNodes();
+      return this.network.getSelectedNodes();
     },
     getSelectedEdges() {
-      return network.getSelectedEdges();
+      return this.network.getSelectedEdges();
     },
     getNodeAt(p) {
-      return network.getNodeAt(p);
+      return this.network.getNodeAt(p);
     },
     getEdgeAt(p) {
-      return network.getEdgeAt(p);
+      return this.network.getEdgeAt(p);
     },
     selectNodes(nodeIds, highlightEdges) {
-      network.selectNodes(nodeIds, highlightEdges);
+      this.network.selectNodes(nodeIds, highlightEdges);
     },
     selectEdges(edgeIds) {
-      network.selectEdges(edgeIds);
+      this.network.selectEdges(edgeIds);
     },
     setSelection(selection, options) {
-      network.setSelection(selection, options);
+      this.network.setSelection(selection, options);
     },
     unselectAll() {
-      network.unselectAll();
+      this.network.unselectAll();
     },
     getScale() {
-      return network.getScale();
+      return this.network.getScale();
     },
     getViewPosition() {
-      return network.getViewPosition();
+      return this.network.getViewPosition();
     },
     fit(options) {
-      network.fit(options);
+      this.network.fit(options);
     },
     focus(nodeId, options) {
-      network.focus(nodeId, options);
+      this.network.focus(nodeId, options);
     },
     moveTo(options) {
-      network.moveTo(options);
+      this.network.moveTo(options);
     },
     releaseNode() {
-      network.releaseNode();
+      this.network.releaseNode();
     },
     getOptionsFromConfigurator() {
-      return network.getOptionsFromConfigurator();
+      return this.network.getOptionsFromConfigurator();
     }
+  },
+  created() {
+    // This should be a Vue data property, but Vue reactivity kinda bugs Vis.
+    // See here for more: https://github.com/almende/vis/issues/2524
+    this.network = null;
   },
   mounted() {
     const container = this.$refs.visualization;
     this.visData.nodes = mountVisData(this, 'nodes');
     this.visData.edges = mountVisData(this, 'edges');
-    network = new Network(container, this.visData, this.options);
+    this.network = new Network(container, this.visData, this.options);
 
     this.events.forEach(eventName =>
-      network.on(eventName, props => this.$emit(translateEvent(eventName), props))
+      this.network.on(eventName, props => this.$emit(translateEvent(eventName), props))
     );
   },
   beforeDestroy() {
-    network.destroy();
+    this.network.destroy();
   },
 };
 </script>

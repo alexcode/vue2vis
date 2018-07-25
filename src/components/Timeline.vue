@@ -108,10 +108,10 @@ export default {
       timeline.moveTo(time, options);
     },
     on(event, callback) {
-      timeline.moveTo(event, callback);
+      timeline.on(event, callback);
     },
     off(event, callback) {
-      timeline.moveTo(event, callback);
+      timeline.off(event, callback);
     },
     redraw() {
       timeline.redraw();
