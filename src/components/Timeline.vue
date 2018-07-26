@@ -6,8 +6,6 @@
 import { DataSet, DataView, Timeline } from 'vis';
 import { mountVisData } from '../utils';
 
-let timeline = null;
-
 export default {
   name: 'timeline',
   props: {
@@ -60,114 +58,119 @@ export default {
     options: {
       deep: true,
       handler(v) {
-        timeline.setOptions(v);
+        this.timeline.setOptions(v);
       }
     },
     selection: {
       deep: false,
       handler(v) {
-        timeline.setSelection(v);
+        this.timeline.setSelection(v);
       }
     }
   },
   methods: {
     addCustomTime(time, id) {
-      return timeline.addCustomTime(time, id);
+      return this.timeline.addCustomTime(time, id);
     },
     destroy() {
-      timeline.destroy();
+      this.timeline.destroy();
     },
     fit() {
-      timeline.fit();
+      this.timeline.fit();
     },
     focus(id, options) {
-      timeline.focus(id, options);
+      this.timeline.focus(id, options);
     },
     getCurrentTime() {
-      return timeline.getCurrentTime();
+      return this.timeline.getCurrentTime();
     },
     getCustomTime(id) {
-      return timeline.getCustomTime(id);
+      return this.timeline.getCustomTime(id);
     },
     getEventProperties(event) {
-      return timeline.getEventProperties(event);
+      return this.timeline.getEventProperties(event);
     },
     getItemRange() {
-      return timeline.getItemRange();
+      return this.timeline.getItemRange();
     },
     getSelection() {
-      return timeline.getSelection();
+      return this.timeline.getSelection();
     },
     getVisibleItems() {
-      return timeline.getVisibleItems();
+      return this.timeline.getVisibleItems();
     },
     getWindow() {
-      return timeline.getWindow();
+      return this.timeline.getWindow();
     },
     moveTo(time, options) {
-      timeline.moveTo(time, options);
+      this.timeline.moveTo(time, options);
     },
     on(event, callback) {
-      timeline.on(event, callback);
+      this.timeline.on(event, callback);
     },
     off(event, callback) {
-      timeline.off(event, callback);
+      this.timeline.off(event, callback);
     },
     redraw() {
-      timeline.redraw();
+      this.timeline.redraw();
     },
     removeCustomTime(id) {
-      timeline.removeCustomTime(id);
+      this.timeline.removeCustomTime(id);
     },
     setCurrentTime(time) {
-      timeline.setCurrentTime(time);
+      this.timeline.setCurrentTime(time);
     },
     setCustomTime(time, id) {
-      timeline.setCustomTime(time, id);
+      this.timeline.setCustomTime(time, id);
     },
     setCustomTimeTitle(title, id) {
-      timeline.setCustomTimeTitle(title, id);
+      this.timeline.setCustomTimeTitle(title, id);
     },
     setData(object) {
-      timeline.setData(object);
+      this.timeline.setData(object);
     },
     setGroups(groups) {
-      timeline.setGroups(groups);
+      this.timeline.setGroups(groups);
     },
     setItems(items) {
-      timeline.setItems(items);
+      this.timeline.setItems(items);
     },
     setOptions(options) {
-      timeline.setOptions(options);
+      this.timeline.setOptions(options);
     },
     setSelection(ids, options) {
-      timeline.setSelection(ids, options);
+      this.timeline.setSelection(ids, options);
     },
     setWindow(start, end, options, callback) {
-      timeline.setWindow(start, end, options, callback);
+      this.timeline.setWindow(start, end, options, callback);
     },
     toggleRollingMode() {
-      timeline.toggleRollingMode();
+      this.timeline.toggleRollingMode();
     },
     zoomIn(percentage, options, callback) {
-      timeline.zoomIn(percentage, options, callback);
+      this.timeline.zoomIn(percentage, options, callback);
     },
     zoomOut(percentage, options, callback) {
-      timeline.zoomOut(percentage, options, callback);
+      this.timeline.zoomOut(percentage, options, callback);
     }
   },
   mounted() {
     const container = this.$refs.visualization;
     this.visData.items = mountVisData(this, 'items');
     this.visData.groups = mountVisData(this, 'groups');
-    timeline = new Timeline(container, this.visData.items, this.visData.groups, this.options);
+    this.timeline = new Timeline(container, this.visData.items, this.visData.groups, this.options);
 
     this.events.forEach(eventName =>
-      timeline.on(eventName, props => this.$emit(eventName, props))
+      this.timeline.on(eventName, props => this.$emit(eventName, props))
     );
   },
+  created() {
+    // This should be a Vue data property, but Vue reactivity kinda bugs Vis.
+    // See here for more: https://github.com/almende/vis/issues/2524
+    this.timeline = null;
+  },
   beforeDestroy() {
-    timeline.destroy();
+    this.timeline.destroy();
   }
 };
 </script>
