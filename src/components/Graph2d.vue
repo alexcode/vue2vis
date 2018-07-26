@@ -4,7 +4,7 @@
 
 <script>
 import { DataSet, DataView, Graph2d } from 'vis';
-import { mountVisData } from '../utils';
+import { mountVisData, translateEvent } from '../utils';
 
 export default {
   name: 'graph2d',
@@ -115,7 +115,7 @@ export default {
     this.graph2d = new Graph2d(container, this.visData.items, this.visData.groups, this.options);
 
     this.events.forEach(eventName =>
-      this.graph2d.on(eventName, props => this.$emit(eventName, props))
+      this.graph2d.on(eventName, props => this.$emit(translateEvent(eventName), props))
     );
   },
   created() {

@@ -4,7 +4,7 @@
 
 <script>
 import { DataSet, DataView, Network } from 'vis';
-import { mountVisData } from '../utils';
+import { mountVisData, translateEvent } from '../utils';
 
 export default {
   name: 'network',
@@ -261,7 +261,7 @@ export default {
     this.network = new Network(container, this.visData, this.options);
 
     this.events.forEach(eventName =>
-      this.network.on(eventName, props => this.$emit(eventName, props))
+      this.network.on(eventName, props => this.$emit(translateEvent(eventName), props))
     );
   },
   beforeDestroy() {
