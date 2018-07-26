@@ -6,8 +6,6 @@
 import { DataSet, DataView, Graph2d } from 'vis';
 import { mountVisData, translateEvent } from '../utils';
 
-let graph2d = null;
-
 export default {
   name: 'graph2d',
   props: {
@@ -47,81 +45,86 @@ export default {
     options: {
       deep: true,
       handler(v) {
-        graph2d.setOptions(v);
+        this.graph2d.setOptions(v);
       }
     }
   },
   methods: {
     destroy() {
-      graph2d.destroy();
+      this.graph2d.destroy();
     },
     fit() {
-      graph2d.fit();
+      this.graph2d.fit();
     },
     getCurrentTime() {
-      return graph2d.getCurrentTime();
+      return this.graph2d.getCurrentTime();
     },
     getCustomTime() {
-      return graph2d.getCustomTime(id);
+      return this.graph2d.getCustomTime(id);
     },
     getDataRange() {
-      return graph2d.getDataRange();
+      return this.graph2d.getDataRange();
     },
     getEventProperties(event) {
-      return graph2d.getEventProperties(event);
+      return this.graph2d.getEventProperties(event);
     },
     getLegend(groupId, iconWidth, iconHeight) {
-      return graph2d.getLegend(groupId, iconWidth, iconHeight);
+      return this.graph2d.getLegend(groupId, iconWidth, iconHeight);
     },
     getWindow() {
-      return graph2d.getWindow();
+      return this.graph2d.getWindow();
     },
     isGroupVisible(groupId) {
-      return graph2d.isGroupVisible(groupId);
+      return this.graph2d.isGroupVisible(groupId);
     },
     moveTo(time, options) {
-      graph2d.moveTo(time, options);
+      this.graph2d.moveTo(time, options);
     },
     on(event, callback) {
-      graph2d.on(event, callback);
+      this.graph2d.on(event, callback);
     },
     off(event, callback) {
-      graph2d.off(event, callback);
+      this.graph2d.off(event, callback);
     },
     redraw() {
-      graph2d.redraw();
+      this.graph2d.redraw();
     },
     setCurrentTime(time) {
-      graph2d.setCurrentTime(time);
+      this.graph2d.setCurrentTime(time);
     },
     setCustomTime(time) {
-      graph2d.setCustomTime(time);
+      this.graph2d.setCustomTime(time);
     },
     setGroups(groups) {
-      graph2d.setGroups(groups);
+      this.graph2d.setGroups(groups);
     },
     setItems(items) {
-      graph2d.setItems(items);
+      this.graph2d.setItems(items);
     },
     setOptions(options) {
-      graph2d.setOptions(options);
+      this.graph2d.setOptions(options);
     },
     setWindow(start, end) {
-      graph2d.setWindow(start, end);
+      this.graph2d.setWindow(start, end);
     }
   },
   mounted() {
     const container = this.$refs.visualization;
     this.visData.items = mountVisData(this, 'items');
     this.visData.groups = mountVisData(this, 'groups');
-    graph2d = new Graph2d(container, this.visData.items, this.visData.groups, this.options);
+    this.graph2d = new Graph2d(container, this.visData.items, this.visData.groups, this.options);
 
     this.events.forEach(eventName =>
-      graph2d.on(eventName, props => this.$emit(translateEvent(eventName), props))
+      this.graph2d.on(eventName, props => this.$emit(translateEvent(eventName), props))
     );
   },
+  created() {
+    // This should be a Vue data property, but Vue reactivity kinda bugs Vis.
+    // See here for more: https://github.com/almende/vis/issues/2524
+    this.graph2d = null;
+  },
   beforeDestroy() {
-    graph2d.destroy();
+    this.graph2d.destroy();
   }
 };
 </script>
