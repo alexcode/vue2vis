@@ -1,10 +1,21 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const config = module.exports = {
+  optimization: {
+    minimizer: [
+      new OptimizeCSSAssetsPlugin({})
+    ]
+  },
   plugins: [
-    new ExtractTextPlugin("vue2vis.css"),
+    new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+    })
   ]
 };
 
@@ -45,9 +56,9 @@ config.externals = [{
 config.resolveLoader = {
   modules: config.resolve.modules
 };
-
+config.mode = 'production';
 config.module = {
-  loaders: [
+  rules: [
     {
       test: /\.vue$/,
       loader: 'vue-loader'
@@ -67,10 +78,10 @@ config.module = {
     },
     {
       test: /\.css$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: 'css-loader'
-      }),
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader'
+      ]
     },
   ]
 };
@@ -78,24 +89,6 @@ process.traceDeprecation = true;
 if (process.env.NODE_ENV === 'production') {
   config.output.filename = "vue2vis.min.js"
   config.devtool = '#source-map';
-
-  // Pass build environment inside bundle
-  // This will strip comments in Vue code & hort-circuits all Vue.js warning code
-  config.plugins.push(new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-  }));
-
-  // The UglifyJsPlugin will no longer put loaders into minimize mode, and the debug option has been deprecated.
-  config.plugins.push(new webpack.LoaderOptionsPlugin({
-    minimize: true,
-    debug: false
-  }));
-
-  // Minify with dead-code elimination
-  config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-    compress: {warnings: false},
-    sourceMap: true
-  }));
 } else {
   config.devtool = '#eval-source-map';
 }
