@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const config = module.exports = {
@@ -13,8 +13,8 @@ const config = module.exports = {
   plugins: [
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
+      filename: '[name].css',
+      chunkFilename: '[id].css'
     })
   ]
 };
@@ -31,8 +31,9 @@ config.entry = {
 config.output = {
   path: path.resolve(__dirname, '../dist'),
   filename: 'vue2vis.js',
-  library: ["vue2vis"],
-  libraryTarget: "umd",
+  library: ['vue2vis'],
+  libraryTarget: 'umd',
+  globalObject: 'this',
 };
 
 config.externals = ['visjs', 'vue'];
@@ -87,7 +88,7 @@ config.module = {
 };
 process.traceDeprecation = true;
 if (process.env.NODE_ENV === 'production') {
-  config.output.filename = "vue2vis.min.js"
+  config.output.filename = 'vue2vis.min.js'
   config.devtool = '#source-map';
 } else {
   config.devtool = '#eval-source-map';
