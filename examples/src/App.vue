@@ -55,7 +55,39 @@
 
   <hr>
 
-  <h2>Timeline</h2>
+  <h2>Timeline (without groups)</h2>
+  <timeline
+  ref="timeline-withoutGroups"
+  :items="timeline.items"
+  :options="timeline.options"
+  @click="timelineWithoutGroupsEvent('click')"
+  @contextmenu="timelineWithoutGroupsEvent('contextmenu')"
+  @current-time-tick="timelineWithoutGroupsEvent('currentTimeTick')"
+  @double-click="timelineWithoutGroupsEvent('doubleClick')"
+  @drop="timelineWithoutGroupsEvent('drop')"
+  @mouse-over="timelineWithoutGroupsEvent('mouseOver')"
+  @mouse-down="timelineWithoutGroupsEvent('mouseDown')"
+  @mouse-up="timelineWithoutGroupsEvent('mouseUp')"
+  @mouse-move="timelineWithoutGroupsEvent('mouseMove')"
+  @group-dragged="timelineWithoutGroupsEvent('groupDragged')"
+  @changed="timelineWithoutGroupsEvent('changed')"
+  @rangechange="timelineWithoutGroupsEvent('rangechange')"
+  @rangechanged="timelineWithoutGroupsEvent('rangechanged')"
+  @select="timelineWithoutGroupsEvent('select')"
+  @itemover="timelineWithoutGroupsEvent('itemover')"
+  @itemout="timelineWithoutGroupsEvent('itemout')"
+  @timechange="timelineWithoutGroupsEvent('timechange')"
+  @timechanged="timelineWithoutGroupsEvent('timechanged')"
+  @items-mounted="timelineWithoutGroupsEvent('items-mounted')"
+  @items-add="timelineWithoutGroupsEvent('items-add')"
+  @items-update="timelineWithoutGroupsEvent('items-update')"
+  @items-remove="timelineWithoutGroupsEvent('items-remove')">
+  </timeline>
+  <div class="events"><p>Timeline events: <br /> {{timelineWithoutGroupsEvents}}</p></div>
+
+  <hr>
+
+  <h2>Timeline (with groups)</h2>
   <timeline
   ref="timeline"
   :items="timeline.items"
@@ -126,6 +158,7 @@ import { Timeline, Graph2d, Network } from 'vue2vis';
 export default {
   data: () => ({
     timelineEvents: '',
+    timelineWithoutGroupsEvents: '',
     timeline: {
       groups: [
         {
@@ -265,6 +298,10 @@ export default {
     timelineEvent(eventName) {
       if (this.timelineEvents.length > 500) this.timelineEvents = '';
       this.timelineEvents += `${eventName}, `;
+    },
+    timelineWithoutGroupsEvent(eventName) {
+      if (this.timelineWithoutGroupsEvents.length > 500) this.timelineWithoutGroupsEvents = '';
+      this.timelineWithoutGroupsEvents += `${eventName}, `;
     },
     graph2dEvent(eventName) {
       if (this.graph2dEvents.length > 500) this.graph2dEvents = '';
