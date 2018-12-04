@@ -156,9 +156,15 @@ export default {
   },
   mounted() {
     const container = this.$refs.visualization;
+
     this.visData.items = mountVisData(this, 'items');
-    this.visData.groups = mountVisData(this, 'groups');
-    this.timeline = new Timeline(container, this.visData.items, this.visData.groups, this.options);
+
+    if (this.groups && this.groups.length > 0) {
+      this.visData.groups = mountVisData(this, 'groups');
+      this.timeline = new Timeline(container, this.visData.items, this.visData.groups, this.options);
+    } else {
+      this.timeline = new Timeline(container, this.visData.items, this.options);
+    }
 
     this.events.forEach(eventName =>
       this.timeline.on(eventName, props => this.$emit(translateEvent(eventName), props))
