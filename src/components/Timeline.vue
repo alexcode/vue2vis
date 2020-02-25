@@ -1,13 +1,13 @@
 <template>
-    <div ref="visualization"></div>
+  <div ref="visualization"></div>
 </template>
 
 <script>
-import { DataSet, DataView, Timeline } from 'vis';
-import { mountVisData, translateEvent } from '../utils';
+import { DataSet, DataView, Timeline } from "vis";
+import { mountVisData, translateEvent } from "../utils";
 
 export default {
-  name: 'timeline',
+  name: "timeline",
   props: {
     groups: {
       type: [Array, DataSet, DataView],
@@ -20,25 +20,25 @@ export default {
     events: {
       type: Array,
       default: () => [
-        'click',
-        'contextmenu',
-        'currentTimeTick',
-        'doubleClick',
-        'drop',
-        'mouseOver',
-        'mouseDown',
-        'mouseUp',
-        'mouseMove',
-        'groupDragged',
-        'changed',
-        'rangechange',
-        'rangechanged',
-        'select',
-        'itemover',
-        'itemout',
-        'timechange',
-        'timechanged'
-      ],
+        "click",
+        "contextmenu",
+        "currentTimeTick",
+        "doubleClick",
+        "drop",
+        "mouseOver",
+        "mouseDown",
+        "mouseUp",
+        "mouseMove",
+        "groupDragged",
+        "changed",
+        "rangechange",
+        "rangechanged",
+        "select",
+        "itemover",
+        "itemout",
+        "timechange",
+        "timechanged"
+      ]
     },
     selection: {
       type: [Array, String],
@@ -46,13 +46,13 @@ export default {
     },
     options: {
       type: Object
-    },
+    }
   },
   data: () => ({
     visData: {
       items: null,
-      groups: null,
-    },
+      groups: null
+    }
   }),
   watch: {
     options: {
@@ -157,17 +157,24 @@ export default {
   mounted() {
     const container = this.$refs.visualization;
 
-    this.visData.items = mountVisData(this, 'items');
+    this.visData.items = mountVisData(this, "items");
 
     if (this.groups && this.groups.length > 0) {
-      this.visData.groups = mountVisData(this, 'groups');
-      this.timeline = new Timeline(container, this.visData.items, this.visData.groups, this.options);
+      this.visData.groups = mountVisData(this, "groups");
+      this.timeline = new Timeline(
+        container,
+        this.visData.items,
+        this.visData.groups,
+        this.options
+      );
     } else {
       this.timeline = new Timeline(container, this.visData.items, this.options);
     }
 
     this.events.forEach(eventName =>
-      this.timeline.on(eventName, props => this.$emit(translateEvent(eventName), props))
+      this.timeline.on(eventName, props =>
+        this.$emit(translateEvent(eventName), props)
+      )
     );
   },
   created() {

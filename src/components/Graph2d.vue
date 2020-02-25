@@ -1,13 +1,13 @@
 <template>
-    <div ref="visualization"></div>
+  <div ref="visualization"></div>
 </template>
 
 <script>
-import { DataSet, DataView, Graph2d } from 'vis';
-import { mountVisData, translateEvent } from '../utils';
+import { DataSet, DataView, Graph2d } from "vis";
+import { mountVisData, translateEvent } from "../utils";
 
 export default {
-  name: 'graph2d',
+  name: "graph2d",
   props: {
     groups: {
       type: [Array, DataSet, DataView],
@@ -20,16 +20,16 @@ export default {
     events: {
       type: Array,
       default: () => [
-        'click',
-        'contextmenu',
-        'currentTimeTick',
-        'doubleClick',
-        'changed',
-        'rangechange',
-        'rangechanged',
-        'timechange',
-        'timechanged'
-      ],
+        "click",
+        "contextmenu",
+        "currentTimeTick",
+        "doubleClick",
+        "changed",
+        "rangechange",
+        "rangechanged",
+        "timechange",
+        "timechanged"
+      ]
     },
     options: {
       type: Object
@@ -38,8 +38,8 @@ export default {
   data: () => ({
     visData: {
       items: null,
-      groups: null,
-    },
+      groups: null
+    }
   }),
   watch: {
     options: {
@@ -60,7 +60,7 @@ export default {
       return this.graph2d.getCurrentTime();
     },
     getCustomTime() {
-      return this.graph2d.getCustomTime(id);
+      return this.graph2d.getCustomTime();
     },
     getDataRange() {
       return this.graph2d.getDataRange();
@@ -110,12 +110,19 @@ export default {
   },
   mounted() {
     const container = this.$refs.visualization;
-    this.visData.items = mountVisData(this, 'items');
-    this.visData.groups = mountVisData(this, 'groups');
-    this.graph2d = new Graph2d(container, this.visData.items, this.visData.groups, this.options);
+    this.visData.items = mountVisData(this, "items");
+    this.visData.groups = mountVisData(this, "groups");
+    this.graph2d = new Graph2d(
+      container,
+      this.visData.items,
+      this.visData.groups,
+      this.options
+    );
 
     this.events.forEach(eventName =>
-      this.graph2d.on(eventName, props => this.$emit(translateEvent(eventName), props))
+      this.graph2d.on(eventName, props =>
+        this.$emit(translateEvent(eventName), props)
+      )
     );
   },
   created() {

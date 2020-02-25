@@ -1,13 +1,13 @@
 <template>
-    <div ref="visualization"></div>
+  <div ref="visualization"></div>
 </template>
 
 <script>
-import { DataSet, DataView, Network } from 'vis';
-import { mountVisData, translateEvent } from '../utils';
+import { DataSet, DataView, Network } from "vis";
+import { mountVisData, translateEvent } from "../utils";
 
 export default {
-  name: 'network',
+  name: "network",
   props: {
     edges: {
       type: [Array, DataSet, DataView],
@@ -20,37 +20,37 @@ export default {
     events: {
       type: Array,
       default: () => [
-        'click',
-        'doubleClick',
-        'oncontext',
-        'hold',
-        'release',
-        'select',
-        'selectNode',
-        'selectEdge',
-        'deselectNode',
-        'deselectEdge',
-        'dragStart',
-        'dragging',
-        'dragEnd',
-        'hoverNode',
-        'blurNode',
-        'hoverEdge',
-        'blurEdge',
-        'zoom',
-        'showPopup',
-        'hidePopup',
-        'startStabilizing',
-        'stabilizationProgress',
-        'stabilizationIterationsDone',
-        'stabilized',
-        'resize',
-        'initRedraw',
-        'beforeDrawing',
-        'afterDrawing',
-        'animationFinished',
-        'configChange'
-      ],
+        "click",
+        "doubleClick",
+        "oncontext",
+        "hold",
+        "release",
+        "select",
+        "selectNode",
+        "selectEdge",
+        "deselectNode",
+        "deselectEdge",
+        "dragStart",
+        "dragging",
+        "dragEnd",
+        "hoverNode",
+        "blurNode",
+        "hoverEdge",
+        "blurEdge",
+        "zoom",
+        "showPopup",
+        "hidePopup",
+        "startStabilizing",
+        "stabilizationProgress",
+        "stabilizationIterationsDone",
+        "stabilized",
+        "resize",
+        "initRedraw",
+        "beforeDrawing",
+        "afterDrawing",
+        "animationFinished",
+        "configChange"
+      ]
     },
     options: {
       type: Object,
@@ -74,7 +74,7 @@ export default {
   methods: {
     setData(n, e) {
       this.visData.nodes = Array.isArray(n) ? new DataSet(n) : n;
-      this.visData.edges =  Array.isArray(e) ? new DataSet(e) : e;
+      this.visData.edges = Array.isArray(e) ? new DataSet(e) : e;
       this.network.setData(this.visData);
     },
     destroy() {
@@ -256,16 +256,18 @@ export default {
   },
   mounted() {
     const container = this.$refs.visualization;
-    this.visData.nodes = mountVisData(this, 'nodes');
-    this.visData.edges = mountVisData(this, 'edges');
+    this.visData.nodes = mountVisData(this, "nodes");
+    this.visData.edges = mountVisData(this, "edges");
     this.network = new Network(container, this.visData, this.options);
 
     this.events.forEach(eventName =>
-      this.network.on(eventName, props => this.$emit(translateEvent(eventName), props))
+      this.network.on(eventName, props =>
+        this.$emit(translateEvent(eventName), props)
+      )
     );
   },
   beforeDestroy() {
     this.network.destroy();
-  },
+  }
 };
 </script>
