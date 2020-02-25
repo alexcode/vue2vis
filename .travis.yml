@@ -1,9 +1,9 @@
 sudo: false
 language: node_js
 node_js:
-- 6
+  - node
 script:
-- yarn run build
+  - yarn run build
 deploy:
   provider: npm
   skip_cleanup: true
