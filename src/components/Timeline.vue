@@ -158,18 +158,13 @@ export default {
     const container = this.$refs.visualization;
 
     this.visData.items = mountVisData(this, "items");
-
-    if (this.groups && this.groups.length > 0) {
-      this.visData.groups = mountVisData(this, "groups");
-      this.timeline = new Timeline(
-        container,
-        this.visData.items,
-        this.visData.groups,
-        this.options
-      );
-    } else {
-      this.timeline = new Timeline(container, this.visData.items, this.options);
-    }
+    this.visData.groups = mountVisData(this, "groups");
+    this.timeline = new Timeline(
+      container,
+      this.visData.items,
+      this.visData.groups,
+      this.options
+    );
 
     this.events.forEach(eventName =>
       this.timeline.on(eventName, props =>
