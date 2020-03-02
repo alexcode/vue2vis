@@ -1,14 +1,9 @@
 {
   "name": "vue2vis",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Vue2 component that helps with Visjs interaction",
-  "jsnext": "dist/vue2vis.js",
-  "main": "dist/vue2vis.min.js",
-  "module": "dist/vue2vis.min.js",
-  "unpkg": "dist/vue2vis.min.js",
-  "directories": {
-    "test": "test"
-  },
+  "main": "dist/vue2vis.umd.js",
+  "module": "dist/vue2vis.commons.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name vue2vis src/main.js",
@@ -31,8 +26,8 @@
     "visjs"
   ],
   "dependencies": {
-    "vis": "^4.21.0",
-    "core-js": "^3.6.4"
+    "core-js": "^3.6.4",
+    "vis": "^4.21.0"
   },
   "peerDependencies": {
     "vue": "^2.6.11"
@@ -51,6 +46,6 @@
     "prettier": "^1.19.1",
     "vue": "^2.6.11",
     "vue-template-compiler": "^2.6.11",
-    "vue2vis": "^0.0.16"
+    "vue2vis": "^0.0.17"
   }
 }

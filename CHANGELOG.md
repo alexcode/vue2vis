@@ -9,7 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 NA
 
-## [0.0.17] - 2018-12-04
+## [0.0.18] - 2020-03-02
+
+### Fixed
+
+- Main entry change with new bundle [#55](https://github.com/alexcode/vue2vis/issues/55).
+
+## [0.0.17] - 2020-02-25
 
 ### Fixed
 
@@ -35,9 +41,11 @@ NA
 
 - Update packages in both lib and examples
 
-[unreleased]: https://github.com/alexcode/vue2vis/compare/v0.0.17...HEAD
-[0.0.15]: https://github.com/alexcode/vue2vis/compare/v0.0.16...v0.0.17
-[0.0.15]: https://github.com/alexcode/vue2vis/compare/v0.0.15...v0.0.16
+[unreleased]: https://github.com/alexcode/vue2vis/compare/v0.0.18...HEAD
+[0.0.16]: https://github.com/alexcode/vue2vis/compare/v0.0.17...v0.0.18
+[0.0.16]: https://github.com/alexcode/vue2vis/compare/v0.0.16...v0.0.17
+[0.0.16]: https://github.com/alexcode/vue2vis/compare/v0.0.15...v0.0.16
+[0.0.15]: https://github.com/alexcode/vue2vis/compare/v0.0.14...v0.0.15
 [0.0.14]: https://github.com/alexcode/vue2vis/compare/v0.0.13...v0.0.14
 [0.0.13]: https://github.com/alexcode/vue2vis/compare/v0.0.12...v0.0.13
 [0.0.12]: https://github.com/alexcode/vue2vis/compare/v0.0.11...v0.0.12
