@@ -3,8 +3,9 @@
 </template>
 
 <script>
-import { DataSet, DataView, Graph2d } from "vis";
-import { mountVisData, translateEvent } from "../utils";
+import { DataSet, DataView } from "vis-data/esnext";
+import { Graph2d } from "vis-timeline/esnext";
+import { subscribeEvents, translateEvent } from "@vue2vis/utils";
 
 export default {
   name: "graph2d",
@@ -97,9 +98,11 @@ export default {
     },
     setGroups(groups) {
       this.graph2d.setGroups(groups);
+      subscribeEvents(this, "groups", this.graph2d.groupsData);
     },
     setItems(items) {
       this.graph2d.setItems(items);
+      subscribeEvents(this, "items", this.graph2d.itemsData);
     },
     setOptions(options) {
       this.graph2d.setOptions(options);
@@ -109,15 +112,12 @@ export default {
     }
   },
   mounted() {
-    const container = this.$refs.visualization;
-    this.visData.items = mountVisData(this, "items");
-    this.visData.groups = mountVisData(this, "groups");
-    this.graph2d = new Graph2d(
-      container,
-      this.visData.items,
-      this.visData.groups,
-      this.options
-    );
+    this.graph2d = new Graph2d(this.$refs.visualization);
+    this.setOptions(this.options);
+    if (this.groups) {
+      this.setGroups(this.groups);
+    }
+    this.setItems(this.items);
 
     this.events.forEach(eventName =>
       this.graph2d.on(eventName, props =>

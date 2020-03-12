@@ -3,15 +3,15 @@
 </template>
 
 <script>
-import { DataSet, DataView, Timeline } from "vis";
-import { mountVisData, translateEvent } from "../utils";
+import { DataSet, DataView } from "vis-data/esnext";
+import { Timeline } from "vis-timeline/esnext";
+import { subscribeEvents, translateEvent } from "@vue2vis/utils";
 
 export default {
   name: "timeline",
   props: {
     groups: {
-      type: [Array, DataSet, DataView],
-      default: () => []
+      type: [Array, DataSet, DataView]
     },
     items: {
       type: [Array, DataSet, DataView],
@@ -48,12 +48,6 @@ export default {
       type: Object
     }
   },
-  data: () => ({
-    visData: {
-      items: null,
-      groups: null
-    }
-  }),
   watch: {
     options: {
       deep: true,
@@ -131,9 +125,11 @@ export default {
     },
     setGroups(groups) {
       this.timeline.setGroups(groups);
+      subscribeEvents(this, "groups", this.timeline.groupsData);
     },
     setItems(items) {
       this.timeline.setItems(items);
+      subscribeEvents(this, "items", this.timeline.itemsData);
     },
     setOptions(options) {
       this.timeline.setOptions(options);
@@ -155,16 +151,12 @@ export default {
     }
   },
   mounted() {
-    const container = this.$refs.visualization;
-
-    this.visData.items = mountVisData(this, "items");
-    this.visData.groups = mountVisData(this, "groups");
-    this.timeline = new Timeline(
-      container,
-      this.visData.items,
-      this.visData.groups,
-      this.options
-    );
+    this.timeline = new Timeline(this.$refs.visualization);
+    this.setOptions(this.options);
+    if (this.groups) {
+      this.setGroups(this.groups);
+    }
+    this.setItems(this.items);
 
     this.events.forEach(eventName =>
       this.timeline.on(eventName, props =>

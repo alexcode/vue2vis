@@ -3,8 +3,9 @@
 </template>
 
 <script>
-import { DataSet, DataView, Network } from "vis";
-import { mountVisData, translateEvent } from "../utils";
+import { DataSet, DataView } from "vis-data/esnext";
+import { Network } from "vis-network/esnext";
+import { subscribeEvents, translateEvent } from "@vue2vis/utils";
 
 export default {
   name: "network",
@@ -75,6 +76,8 @@ export default {
     setData(n, e) {
       this.visData.nodes = Array.isArray(n) ? new DataSet(n) : n;
       this.visData.edges = Array.isArray(e) ? new DataSet(e) : e;
+      subscribeEvents(this, "nodes", this.visData.nodes);
+      subscribeEvents(this, "edges", this.visData.edges);
       this.network.setData(this.visData);
     },
     destroy() {
@@ -256,8 +259,16 @@ export default {
   },
   mounted() {
     const container = this.$refs.visualization;
-    this.visData.nodes = mountVisData(this, "nodes");
-    this.visData.edges = mountVisData(this, "edges");
+    this.visData.nodes = Array.isArray(this.nodes)
+      ? new DataSet(this.nodes)
+      : this.nodes;
+    this.visData.edges = Array.isArray(this.edges)
+      ? new DataSet(this.edges)
+      : this.edges;
+
+    subscribeEvents(this, "nodes", this.visData.nodes);
+    subscribeEvents(this, "edges", this.visData.edges);
+
     this.network = new Network(container, this.visData, this.options);
 
     this.events.forEach(eventName =>

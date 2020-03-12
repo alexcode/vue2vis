@@ -1,17 +1,12 @@
 {
   "name": "vue2vis",
-  "version": "0.0.17",
-  "description": "Vue2 component that helps with Visjs interaction",
-  "jsnext": "dist/vue2vis.js",
-  "main": "dist/vue2vis.min.js",
-  "module": "dist/vue2vis.min.js",
-  "unpkg": "dist/vue2vis.min.js",
-  "directories": {
-    "test": "test"
-  },
+  "version": "0.1.0",
+  "private": true,
+  "description": "vue2vis monorepo",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name vue2vis src/main.js",
+    "graph2d": "lerna run serve --scope @vue2vis/graph2d",
+    "network": "lerna run serve --scope @vue2vis/network",
+    "timeline": "lerna run serve --scope @vue2vis/timeline",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
@@ -19,10 +14,6 @@
     "type": "git",
     "url": "git://github.com/alexcode/vue2vis.git"
   },
-  "files": [
-    "dist/",
-    "src/"
-  ],
   "author": "Alex Couturon <infocontact.alex@gmail.com>",
   "license": "MIT",
   "keywords": [
@@ -31,7 +22,6 @@
     "visjs"
   ],
   "dependencies": {
-    "vis": "^4.21.0",
     "core-js": "^3.6.4"
   },
   "peerDependencies": {
@@ -48,6 +38,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^6.1.2",
+    "lerna": "^3.20.2",
     "prettier": "^1.19.1",
     "vue": "^2.6.11",
     "vue-template-compiler": "^2.6.11",
