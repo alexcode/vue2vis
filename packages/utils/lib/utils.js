@@ -3,10 +3,11 @@ import { DataSet, DataView } from "vis-data/esnext";
 export const arrayDiff = (arr1, arr2) =>
   arr1.filter(x => arr2.indexOf(x) === -1);
 
-export const subscribeEvents = (vm, propName, data) => {
+export const mountVisData = (vm, propName) => {
+  let data = vm[propName];
   // If data is DataSet or DataView we return early without attaching our own events
-  if (!(data instanceof DataSet || data instanceof DataView)) {
-    // data = new DataSet(vm[propName]);
+  if (!(vm[propName] instanceof DataSet || vm[propName] instanceof DataView)) {
+    data = new DataSet(vm[propName]);
     // Rethrow all events
     data.on("*", (event, properties, senderId) =>
       vm.$emit(`${propName}-${event}`, { event, properties, senderId })
@@ -15,9 +16,9 @@ export const subscribeEvents = (vm, propName, data) => {
     const callback = value => {
       if (Array.isArray(value)) {
         const newIds = new DataSet(value).getIds();
-        const diff = arrayDiff(data.getIds(), newIds);
-        data.update(value);
-        data.remove(diff);
+        const diff = arrayDiff(vm.visData[propName].getIds(), newIds);
+        vm.visData[propName].update(value);
+        vm.visData[propName].remove(diff);
       }
     };
 

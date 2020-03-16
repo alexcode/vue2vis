@@ -82,8 +82,7 @@
 </template>
 
 <script>
-import { Timeline } from "../lib/main.js";
-// import { Timeline } from "@vue2vis/timeline";
+import { Timeline } from "@vue2vis/timeline";
 
 export default {
   components: {
@@ -157,8 +156,6 @@ export default {
 </script>
 
 <style lang="css">
-/* @import "../node_modules/vue2vis/dist/vue2vis.css"; */
-@import "../node_modules/vis-timeline/styles/vis-timeline-graph2d.css";
 * {
   font-family: sans-serif;
 }

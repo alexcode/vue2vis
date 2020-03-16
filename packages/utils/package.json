@@ -5,7 +5,9 @@
   "author": "Alex Couturon <infocontact.alex@gmail.com>",
   "homepage": "https://github.com/alexcode/vue2vis#readme",
   "license": "MIT",
-  "main": "lib/utils.js",
+  "main": "dist/utils.js",
+  "module": "dist/utils.esm.js",
+  "browser": "dist/utils.cjs.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -13,15 +15,14 @@
   "files": [
     "lib"
   ],
-  "publishConfig": {
-    "registry": "https://registry.yarnpkg.com"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alexcode/vue2vis.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "rollup -c rollup.config.js",
+    "prepare": "rollup -c rollup.config.js"
   },
   "bugs": {
     "url": "https://github.com/alexcode/vue2vis/issues"

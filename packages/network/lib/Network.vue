@@ -5,7 +5,8 @@
 <script>
 import { DataSet, DataView } from "vis-data/esnext";
 import { Network } from "vis-network/esnext";
-import { subscribeEvents, translateEvent } from "@vue2vis/utils";
+import { mountVisData, translateEvent } from "@vue2vis/utils";
+import "vis-network/styles/vis-network.css";
 
 export default {
   name: "network",
@@ -60,8 +61,8 @@ export default {
   },
   data: () => ({
     visData: {
-      nodes: null,
-      edges: null
+      nodes: [],
+      edges: []
     }
   }),
   watch: {
@@ -76,8 +77,6 @@ export default {
     setData(n, e) {
       this.visData.nodes = Array.isArray(n) ? new DataSet(n) : n;
       this.visData.edges = Array.isArray(e) ? new DataSet(e) : e;
-      subscribeEvents(this, "nodes", this.visData.nodes);
-      subscribeEvents(this, "edges", this.visData.edges);
       this.network.setData(this.visData);
     },
     destroy() {
@@ -258,18 +257,13 @@ export default {
     this.network = null;
   },
   mounted() {
-    const container = this.$refs.visualization;
-    this.visData.nodes = Array.isArray(this.nodes)
-      ? new DataSet(this.nodes)
-      : this.nodes;
-    this.visData.edges = Array.isArray(this.edges)
-      ? new DataSet(this.edges)
-      : this.edges;
-
-    subscribeEvents(this, "nodes", this.visData.nodes);
-    subscribeEvents(this, "edges", this.visData.edges);
-
-    this.network = new Network(container, this.visData, this.options);
+    this.visData.nodes = mountVisData(this, "nodes");
+    this.visData.edges = mountVisData(this, "edges");
+    this.network = new Network(
+      this.$refs.visualization,
+      this.visData,
+      this.options
+    );
 
     this.events.forEach(eventName =>
       this.network.on(eventName, props =>

@@ -64,8 +64,7 @@
 </template>
 
 <script>
-import { Network } from "../lib/main.js";
-// import { Network } from "@vue2vis/network";
+import { Network } from "@vue2vis/network";
 
 export default {
   components: {

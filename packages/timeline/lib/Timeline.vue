@@ -5,7 +5,8 @@
 <script>
 import { DataSet, DataView } from "vis-data/esnext";
 import { Timeline } from "vis-timeline/esnext";
-import { subscribeEvents, translateEvent } from "@vue2vis/utils";
+import { mountVisData, translateEvent } from "@vue2vis/utils";
+import "vis-timeline/styles/vis-timeline-graph2d.css";
 
 export default {
   name: "timeline",
@@ -48,6 +49,12 @@ export default {
       type: Object
     }
   },
+  data: () => ({
+    visData: {
+      items: null,
+      groups: null
+    }
+  }),
   watch: {
     options: {
       deep: true,
@@ -125,11 +132,9 @@ export default {
     },
     setGroups(groups) {
       this.timeline.setGroups(groups);
-      subscribeEvents(this, "groups", this.timeline.groupsData);
     },
     setItems(items) {
       this.timeline.setItems(items);
-      subscribeEvents(this, "items", this.timeline.itemsData);
     },
     setOptions(options) {
       this.timeline.setOptions(options);
@@ -151,12 +156,16 @@ export default {
     }
   },
   mounted() {
-    this.timeline = new Timeline(this.$refs.visualization);
-    this.setOptions(this.options);
+    this.visData.items = mountVisData(this, "items");
     if (this.groups) {
-      this.setGroups(this.groups);
+      this.visData.groups = mountVisData(this, "groups");
     }
-    this.setItems(this.items);
+    this.timeline = new Timeline(
+      this.$refs.visualization,
+      this.visData.items,
+      this.visData.groups,
+      this.options
+    );
 
     this.events.forEach(eventName =>
       this.timeline.on(eventName, props =>

@@ -5,14 +5,14 @@
 <script>
 import { DataSet, DataView } from "vis-data/esnext";
 import { Graph2d } from "vis-timeline/esnext";
-import { subscribeEvents, translateEvent } from "@vue2vis/utils";
+import { mountVisData, translateEvent } from "@vue2vis/utils";
+import "vis-timeline/styles/vis-timeline-graph2d.css";
 
 export default {
   name: "graph2d",
   props: {
     groups: {
-      type: [Array, DataSet, DataView],
-      default: () => []
+      type: [Array, DataSet, DataView]
     },
     items: {
       type: [Array, DataSet, DataView],
@@ -98,11 +98,9 @@ export default {
     },
     setGroups(groups) {
       this.graph2d.setGroups(groups);
-      subscribeEvents(this, "groups", this.graph2d.groupsData);
     },
     setItems(items) {
       this.graph2d.setItems(items);
-      subscribeEvents(this, "items", this.graph2d.itemsData);
     },
     setOptions(options) {
       this.graph2d.setOptions(options);
@@ -112,13 +110,14 @@ export default {
     }
   },
   mounted() {
-    this.graph2d = new Graph2d(this.$refs.visualization);
-    this.setOptions(this.options);
-    if (this.groups) {
-      this.setGroups(this.groups);
-    }
-    this.setItems(this.items);
-
+    this.visData.items = mountVisData(this, "items");
+    this.visData.groups = mountVisData(this, "groups");
+    this.graph2d = new Graph2d(
+      this.$refs.visualization,
+      this.visData.items,
+      this.visData.groups,
+      this.options
+    );
     this.events.forEach(eventName =>
       this.graph2d.on(eventName, props =>
         this.$emit(translateEvent(eventName), props)
