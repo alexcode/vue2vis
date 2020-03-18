@@ -12677,7 +12677,7 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vis-data@^6.2.1, vis-data@^6.3.0:
+vis-data@^6.2.1:
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/vis-data/-/vis-data-6.5.0.tgz#169ab48d3e44bc1d1a3a6a234191dfc4cef890f9"
   integrity sha512-9hw/JEI5/NXpK37z2fv0NkSH71cqeR6Tx+QX5rsVXkF/P1tQ9mXMYCkztVQS8Ha6gZDsiolgZzsLf+Blki0ycw==

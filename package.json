@@ -45,7 +45,9 @@
     "visjs"
   ],
   "dependencies": {
-    "core-js": "^3.6.4"
+    "core-js": "^3.6.4",
+    "vis-data": "^6.2.1",
+    "vis-util": "^4.0.0"
   },
   "peerDependencies": {
     "vue": "^2.6.11"

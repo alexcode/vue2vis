@@ -48,8 +48,6 @@
     "keycharm": "^0.3.0",
     "moment": "^2.24.0",
     "propagating-hammerjs": "^1.4.0",
-    "uuid": "^3.4.0",
-    "vis-data": "^6.3.0",
-    "vis-util": "^4.0.0"
+    "uuid": "^3.4.0"
   }
 }
