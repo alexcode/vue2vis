@@ -3,13 +3,5 @@ language: node_js
 node_js:
   - node
 script:
-  - yarn run build
-deploy:
-  provider: npm
-  skip_cleanup: true
-  email: infocontact.alex@gmail.com
-  api_key:
-    secure: FUfUhfZULx7K32+0eQZxmARAVL3oItkxF1CogKLGl6N1f10fmXBQlsjeRyB7kxt94/pDHEXh8ClFNOp2oPvLj1vR2olILniAuQgssMXzq6muipMPMhWNm+fUfA6G0fms9RC9UT0FjSIpYdJXEgztV9Ruf9Jkcq9OFXXXa0SVE2LIww5ROZPGPgeiHvholLacn97zQVsN8+koYKSweibnr0znae2i6vUL/jTfhg1wo2OzUL8SxccRfz7xEquU3Dyqj/RaSmAlknqhxofrBxHG1bCUkDaU0Ud72ZJfydd23FasUKaSXBtuIpZgvrH4yVmv6c9/W64KjlzjY8b0IgYeC2CoglJDN/XeD/v6EvjZBWesvYtTqAajG2uxCA+nm6+z2eTyeEfDWjAqWoZK/s7MTF+hZRkAhxr6NSeyW5gLVPoNB4XnqxExm1BLJdRkXCzMRJjXxELHuRwMt5wSU5bNStaXmHCAFW4VDi+yajyd6J22Aw2trcZJzRK0MotUwa8vnKIIIoniXMvAr3+Rxd89V7sSS4OkTJ64Eyaud7+sq8VapJri3xHJ1mROGOMu+3ErlPlwSpAhfbMXyvhUljo4aRMcaHnEfQ0quCBO9XFQYzo1fk9E38JGkly28tl4qSwwaBA1ls7i4ZWWsYg4mfaO79TqBH/AwKICv/Pmm3NrtBw=
-  on:
-    tags: true
-    repo: alexcode/vue2vis
+  - yarn lerna bootstrap
+  - yarn test:unit
