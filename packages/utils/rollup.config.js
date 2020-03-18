@@ -12,12 +12,5 @@ export default [
       format: "cjs",
       file: "dist/utils.cjs.js"
     }
-  },
-  {
-    input: "./lib/index.js",
-    output: {
-      format: "iife",
-      file: "dist/utils.js"
-    }
   }
 ];

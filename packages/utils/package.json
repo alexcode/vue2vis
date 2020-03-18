@@ -5,9 +5,8 @@
   "author": "Alex Couturon <infocontact.alex@gmail.com>",
   "homepage": "https://github.com/alexcode/vue2vis#readme",
   "license": "MIT",
-  "main": "dist/utils.js",
+  "main": "dist/utils.cjs.js",
   "module": "dist/utils.esm.js",
-  "browser": "dist/utils.cjs.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"

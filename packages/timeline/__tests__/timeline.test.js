@@ -1,7 +1,5 @@
-'use strict';
+import { Timeline } from "../lib";
 
-const timeline = require('..');
-
-describe('@vue2vis/timeline', () => {
-    it('needs tests');
+describe("@vue2vis/timeline", () => {
+  test.todo("needs tests");
 });

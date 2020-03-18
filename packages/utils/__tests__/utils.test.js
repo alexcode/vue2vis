@@ -1,7 +1,5 @@
-'use strict';
+import utils from "../lib";
 
-const utils = require('..');
-
-describe('@vue2vis/utils', () => {
-    it('needs tests');
+describe("@vue2vis/utils", () => {
+  test.todo("needs tests");
 });

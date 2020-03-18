@@ -1,7 +1,5 @@
-'use strict';
+import { Network } from "../lib";
 
-const network = require('..');
-
-describe('@vue2vis/network', () => {
-    it('needs tests');
+describe("@vue2vis/network", () => {
+  test.todo("needs tests");
 });

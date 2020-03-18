@@ -1,7 +1,5 @@
-'use strict';
+import { Graph2d } from "../lib";
 
-const graph2D = require('..');
-
-describe('@vue2vis/graph2d', () => {
-    it('needs tests');
+describe("@vue2vis/graph2d", () => {
+  test.todo("needs tests");
 });
