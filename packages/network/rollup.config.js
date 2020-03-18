@@ -2,7 +2,7 @@ import vue from "rollup-plugin-vue";
 
 export default [
   {
-    input: "./lib/main.js",
+    input: "./lib/index.js",
     output: {
       format: "esm",
       file: "dist/network.esm.js"
@@ -10,7 +10,7 @@ export default [
     plugins: [vue()]
   },
   {
-    input: "./lib/main.js",
+    input: "./lib/index.js",
     output: {
       format: "cjs",
       file: "dist/network.cjs.js"

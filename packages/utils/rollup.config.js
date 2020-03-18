@@ -1,20 +1,20 @@
 export default [
   {
-    input: "./lib/utils.js",
+    input: "./lib/index.js",
     output: {
       format: "esm",
       file: "dist/utils.esm.js"
     }
   },
   {
-    input: "./lib/utils.js",
+    input: "./lib/index.js",
     output: {
       format: "cjs",
       file: "dist/utils.cjs.js"
     }
   },
   {
-    input: "./lib/utils.js",
+    input: "./lib/index.js",
     output: {
       format: "iife",
       file: "dist/utils.js"
