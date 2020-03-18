@@ -13,8 +13,8 @@
     "clean": "lerna exec -- rm -rf ./node_modules",
     "commit": "yarn git-cz",
     "prepare": "lerna run prepare",
-    "lerna:publish": "lerna lerna publish --conventional-commits",
-    "lerna:changed": "lerna lerna changed",
+    "lerna:publish": "lerna publish --conventional-commits",
+    "lerna:changed": "lerna changed",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
