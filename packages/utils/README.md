@@ -1,6 +1,6 @@
 # `@vue2vis/utils`
 
-> Utils function for the @vue2vis package family.
+> Utils functions for the @vue2vis package family.
 
 ### Installation
 

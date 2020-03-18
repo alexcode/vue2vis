@@ -1,7 +1,7 @@
 {
   "name": "@vue2vis/network",
   "version": "1.0.0",
-  "description": "> TODO: description",
+  "description": "Vue2 wrapper for the Visjs Network library.",
   "author": "Alex Couturon <infocontact.alex@gmail.com>",
   "homepage": "https://github.com/alexcode/vue2vis#readme",
   "license": "MIT",
@@ -17,6 +17,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alexcode/vue2vis.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
