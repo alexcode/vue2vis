@@ -1,11 +1,15 @@
 # `@vue2vis/utils`
 
-> TODO: description
+> Utils function for the @vue2vis package family.
 
-## Usage
+### Installation
 
 ```
-const utils = require('@vue2vis/utils');
+npm install --save @vue2vis/utils vis-data vis-utils
+```
 
-// TODO: DEMONSTRATE API
+or
+
+```
+yarn add @vue2vis/utils vis-data vis-utils
 ```

@@ -20,7 +20,6 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
-    "build": "rollup -c rollup.config.js",
     "prepare": "rollup -c rollup.config.js"
   },
   "bugs": {

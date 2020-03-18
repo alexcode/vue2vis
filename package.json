@@ -7,12 +7,11 @@
     "packages/*"
   ],
   "scripts": {
-    "graph2d": "lerna run serve --stream --scope @vue2vis/graph2d",
-    "network": "lerna run serve --stream --scope @vue2vis/network",
-    "timeline": "lerna run serve --stream --scope @vue2vis/timeline",
+    "serve:graph2d": "lerna run serve --stream --scope @vue2vis/graph2d",
+    "serve:network": "lerna run serve --stream --scope @vue2vis/network",
+    "serve:timeline": "lerna run serve --stream --scope @vue2vis/timeline",
     "clean": "lerna exec -- rm -rf ./node_modules",
     "commit": "yarn git-cz",
-    "build": "lerna run build",
     "prepare": "lerna run prepare",
     "lerna:publish": "lerna lerna publish --conventional-commits",
     "lerna:changed": "lerna lerna changed",

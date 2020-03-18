@@ -21,9 +21,7 @@
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
     "serve": "vue-cli-service serve ./examples/main.js",
-    "build": "rollup -c rollup.config.js",
-    "prepare": "rollup -c rollup.config.js",
-    "prepublishOnly": "rollup -c rollup.config.js"
+    "prepare": "rollup -c rollup.config.js"
   },
   "bugs": {
     "url": "https://github.com/alexcode/vue2vis/issues"
