@@ -12,7 +12,7 @@ export default [
     },
     plugins: [
       externals({
-        exclude: ["vis-util", "uuid"]
+        exclude: ["vis-util/esnext", "uuid"]
       }),
       nodePolyfills(),
       resolve({ browser: true }),
@@ -20,7 +20,6 @@ export default [
     ]
   },
   {
-    external: ["vis-data", "vis-util"],
     input: "./lib/index.js",
     output: {
       format: "cjs",
@@ -28,7 +27,7 @@ export default [
     },
     plugins: [
       externals({
-        exclude: ["vis-util", "uuid"]
+        exclude: ["vis-util/esnext", "uuid"]
       }),
       nodePolyfills(),
       resolve({ browser: true }),

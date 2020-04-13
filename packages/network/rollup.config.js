@@ -14,7 +14,7 @@ export default [
     plugins: [
       externals({
         exclude: [
-          "vis-util",
+          "vis-util/esnext",
           "component-emitter",
           "timsort",
           "@egjs/hammerjs",
@@ -41,7 +41,7 @@ export default [
     plugins: [
       externals({
         exclude: [
-          "vis-util",
+          "vis-util/esnext",
           "component-emitter",
           "timsort",
           "@egjs/hammerjs",
