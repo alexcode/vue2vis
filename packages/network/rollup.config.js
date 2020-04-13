@@ -12,7 +12,16 @@ export default [
       file: "dist/network.esm.js"
     },
     plugins: [
-      externals(),
+      externals({
+        exclude: [
+          "vis-util",
+          "component-emitter",
+          "timsort",
+          "@egjs/hammerjs",
+          "keycharm",
+          "uuid"
+        ]
+      }),
       nodePolyfills(),
       resolve({ browser: true }),
       commonjs({
@@ -30,7 +39,16 @@ export default [
       file: "dist/network.cjs.js"
     },
     plugins: [
-      externals(),
+      externals({
+        exclude: [
+          "vis-util",
+          "component-emitter",
+          "timsort",
+          "@egjs/hammerjs",
+          "keycharm",
+          "uuid"
+        ]
+      }),
       nodePolyfills(),
       resolve({ browser: true }),
       commonjs({

@@ -11,7 +11,9 @@ export default [
       file: "dist/utils.esm.js"
     },
     plugins: [
-      externals(),
+      externals({
+        exclude: ["vis-util", "uuid"]
+      }),
       nodePolyfills(),
       resolve({ browser: true }),
       commonjs()
@@ -25,7 +27,9 @@ export default [
       file: "dist/utils.cjs.js"
     },
     plugins: [
-      externals(),
+      externals({
+        exclude: ["vis-util", "uuid"]
+      }),
       nodePolyfills(),
       resolve({ browser: true }),
       commonjs()

@@ -12,7 +12,16 @@ export default [
       file: "dist/graph2d.esm.js"
     },
     plugins: [
-      externals(),
+      externals({
+        exclude: [
+          "vis-util",
+          "component-emitter",
+          "propagating-hammerjs",
+          "@egjs/hammerjs",
+          "keycharm",
+          "uuid"
+        ]
+      }),
       nodePolyfills(),
       resolve({ browser: true }),
       commonjs({
@@ -30,7 +39,16 @@ export default [
       file: "dist/graph2d.cjs.js"
     },
     plugins: [
-      externals(),
+      externals({
+        exclude: [
+          "vis-util",
+          "component-emitter",
+          "propagating-hammerjs",
+          "@egjs/hammerjs",
+          "keycharm",
+          "uuid"
+        ]
+      }),
       nodePolyfills(),
       resolve({ browser: true }),
       commonjs({
