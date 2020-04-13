@@ -65,6 +65,7 @@
 
 <script>
 import { Network } from "@vue2vis/network";
+import "vis-network/styles/vis-network.css";
 
 export default {
   components: {
@@ -99,41 +100,39 @@ export default {
     },
     addNode() {
       const id = new Date().getTime();
-      this.network.nodes.push({ id, label: "New node" });
+      this.nodes.push({ id, label: "New node" });
     },
     addEdge() {
-      const n1 = Math.floor(Math.random() * this.network.nodes.length);
-      const n2 = Math.floor(Math.random() * this.network.nodes.length);
-      this.network.edges.push({
-        id: `${this.network.nodes[n1].id}-${this.network.nodes[n2].id}`,
-        from: this.network.nodes[n1].id,
-        to: this.network.nodes[n2].id
+      const n1 = Math.floor(Math.random() * this.nodes.length);
+      const n2 = Math.floor(Math.random() * this.nodes.length);
+      this.edges.push({
+        id: `${this.nodes[n1].id}-${this.nodes[n2].id}`,
+        from: this.nodes[n1].id,
+        to: this.nodes[n2].id
       });
     },
     resetNetwork() {
-      this.network = {
-        nodes: [
-          { id: 1, label: "Node 1" },
-          { id: 2, label: "Node 2" },
-          { id: 3, label: "Node 3" },
-          { id: 4, label: "Node 4" },
-          { id: 5, label: "Node 5" }
-        ],
-        edges: [
-          { id: 1, from: 1, to: 3 },
-          { id: 2, from: 1, to: 2 },
-          { id: 3, from: 2, to: 4 },
-          { id: 4, from: 2, to: 5 },
-          { id: 5, from: 3, to: 3 }
-        ],
-        options: {}
-      };
+      this.nodes = [
+        { id: 1, label: "Node 1" },
+        { id: 2, label: "Node 2" },
+        { id: 3, label: "Node 3" },
+        { id: 4, label: "Node 4" },
+        { id: 5, label: "Node 5" }
+      ];
+      this.edges = [
+        { id: 1, from: 1, to: 3 },
+        { id: 2, from: 1, to: 2 },
+        { id: 3, from: 2, to: 4 },
+        { id: 4, from: 2, to: 5 },
+        { id: 5, from: 3, to: 3 }
+      ];
+      this.options = {};
     },
     removeNode() {
-      this.network.nodes.splice(0, 1);
+      this.nodes.splice(0, 1);
     },
     removeEdge() {
-      this.network.edges.splice(0, 1);
+      this.edges.splice(0, 1);
     }
   }
 };
