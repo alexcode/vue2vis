@@ -1,3 +1,7 @@
+import externals from "rollup-plugin-node-externals";
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import nodePolyfills from "rollup-plugin-node-polyfills";
 import vue from "rollup-plugin-vue";
 
 export default [
@@ -7,7 +11,17 @@ export default [
       format: "esm",
       file: "dist/network.esm.js"
     },
-    plugins: [vue()]
+    plugins: [
+      externals(),
+      nodePolyfills(),
+      resolve({ browser: true }),
+      commonjs({
+        namedExports: {
+          timsort: ["sort"]
+        }
+      }),
+      vue()
+    ]
   },
   {
     input: "./lib/index.js",
@@ -15,6 +29,16 @@ export default [
       format: "cjs",
       file: "dist/network.cjs.js"
     },
-    plugins: [vue()]
+    plugins: [
+      externals(),
+      nodePolyfills(),
+      resolve({ browser: true }),
+      commonjs({
+        namedExports: {
+          timsort: ["sort"]
+        }
+      }),
+      vue()
+    ]
   }
 ];

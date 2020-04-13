@@ -80,6 +80,8 @@ new Vue({
 });
 ```
 
+Additional info can be found on [Visjs Timeline documentation](https://visjs.github.io/vis-timeline/docs/timeline/)
+
 Here is a basic working demo with item generation:
 [JS Fiddle Basic Demo](https://jsfiddle.net/alexkodo/ejdut8fm/)
 
@@ -90,7 +92,7 @@ You can also create items or group labels as Vue Components:
 
 ### Component Events
 
-By default all Vis events are emitted by your component. You can subscribe to a subset by passing an array in the prop `events` [Visjs event](http://visjs.org/docs/timeline/#Events).
+By default all Vis events are emitted by your component. You can subscribe to a subset by passing an array in the prop `events` [Visjs event](https://visjs.github.io/vis-timeline/docs/timeline/#Events).
 
 ```html
 <body>

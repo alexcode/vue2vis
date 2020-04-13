@@ -6,7 +6,6 @@
 import { DataSet, DataView } from "vis-data/esnext";
 import { Timeline } from "vis-timeline/esnext";
 import { mountVisData, translateEvent } from "@vue2vis/utils";
-import "vis-timeline/styles/vis-timeline-graph2d.css";
 
 export default {
   name: "timeline",

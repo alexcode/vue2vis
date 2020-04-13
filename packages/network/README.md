@@ -77,6 +77,8 @@ new Vue({
 });
 ```
 
+Additional info can be found on [Visjs Network documentation](https://visjs.github.io/vis-network/docs/network/)
+
 Here is a basic working demo with item generation:
 [JS Fiddle Basic Demo](https://jsfiddle.net/alexkodo/ejdut8fm/)
 
@@ -87,7 +89,7 @@ You can also create items or group labels as Vue Components:
 
 ### Component Events
 
-By default all Vis events are emitted by your component. You can subscribe to a subset by passing an array in the prop `events` [Visjs event](http://visjs.org/docs/network/#Events).
+By default all Vis events are emitted by your component. You can subscribe to a subset by passing an array in the prop `events` [Visjs event](https://visjs.github.io/vis-network/docs/timeline/#Events).
 
 ```html
 <body>

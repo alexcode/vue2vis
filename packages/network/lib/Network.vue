@@ -6,7 +6,6 @@
 import { DataSet, DataView } from "vis-data/esnext";
 import { Network } from "vis-network/esnext";
 import { mountVisData, translateEvent } from "@vue2vis/utils";
-import "vis-network/styles/vis-network.css";
 
 export default {
   name: "network",

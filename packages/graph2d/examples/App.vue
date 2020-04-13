@@ -35,6 +35,7 @@
 
 <script>
 import { Graph2d } from "@vue2vis/graph2d";
+import "vis-timeline/styles/vis-timeline-graph2d.css";
 
 export default {
   components: {
