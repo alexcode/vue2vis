@@ -28,6 +28,9 @@
   "bugs": {
     "url": "https://github.com/alexcode/vue2vis/issues"
   },
+  "dependencies": {
+    "vis-util": "^4.0.0"
+  },
   "peerDependencies": {
     "vis-data": "^6.5.1"
   },
@@ -36,7 +39,6 @@
     "@rollup/plugin-node-resolve": "^7.1.1",
     "rollup-plugin-node-externals": "^2.1.5",
     "rollup-plugin-node-polyfills": "^0.2.1",
-    "uuid": "^7.0.0",
-    "vis-util": "^4.0.0"
+    "uuid": "^7.0.0"
   }
 }

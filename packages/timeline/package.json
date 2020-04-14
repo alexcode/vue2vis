@@ -38,7 +38,8 @@
   ],
   "dependencies": {
     "@vue2vis/utils": "^1.0.0",
-    "vis-timeline": "^7.3.4"
+    "vis-timeline": "^7.3.4",
+    "vis-util": "^4.0.0"
   },
   "peerDependencies": {
     "moment": "^2.24.0",
@@ -53,7 +54,6 @@
     "propagating-hammerjs": "^1.4.0",
     "rollup-plugin-node-externals": "^2.1.5",
     "rollup-plugin-node-polyfills": "^0.2.1",
-    "uuid": "^7.0.0",
-    "vis-util": "^4.0.0"
+    "uuid": "^7.0.0"
   }
 }

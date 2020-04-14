@@ -12,7 +12,7 @@ export default [
     },
     plugins: [
       externals({
-        exclude: ["vis-util/esnext", "uuid"]
+        exclude: ["uuid"]
       }),
       nodePolyfills(),
       resolve({ browser: true }),
@@ -27,7 +27,7 @@ export default [
     },
     plugins: [
       externals({
-        exclude: ["vis-util/esnext", "uuid"]
+        exclude: ["uuid"]
       }),
       nodePolyfills(),
       resolve({ browser: true }),

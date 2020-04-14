@@ -14,7 +14,6 @@ export default [
     plugins: [
       externals({
         exclude: [
-          "vis-util/esnext",
           "component-emitter",
           "propagating-hammerjs",
           "@egjs/hammerjs",
@@ -41,7 +40,6 @@ export default [
     plugins: [
       externals({
         exclude: [
-          "vis-util/esnext",
           "component-emitter",
           "propagating-hammerjs",
           "@egjs/hammerjs",
