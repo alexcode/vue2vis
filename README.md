@@ -1,10 +1,10 @@
 # vue2vis
 
-> This monorepo hosts Vue2 component wrapper for the [visjs](https://github.com/visjs) libraries
+> This monorepo hosts Vue2 component wrapper for the [visjs](https://github.com/visjs) libraries.
 
 <p align="center">
-  <a href="https://travis-ci.org/alexcode/vue2vis">
-    <img src="https://travis-ci.org/alexcode/vue2vis.svg?branch=master" alt="Build Status" />
+  <a href="https://travis-ci.com/alexcode/vue2vis">
+    <img src="https://travis-ci.com/alexcode/vue2vis.svg?branch=master" alt="Build Status" />
   </a>
   <a href="https://coveralls.io/github/alexcode/vue2vis?branch=master">
     <img src="https://coveralls.io/repos/github/alexcode/vue2vis/badge.svg?branch=master" alt="Coverage Status" />
@@ -12,15 +12,14 @@
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?" alt="Software License" />
   </a>
-  <a href="https://npmjs.org/package/vue2vis">
-    <img src="https://img.shields.io/npm/v/vue2vis.svg?" alt="Packagist" />
-  </a>
   <a href="https://github.com/alexcode/vue2vis/releases">
     <img src="https://img.shields.io/github/release/alexcode/vue2vis.svg?" alt="Latest Version" />
   </a>
-
   <a href="https://github.com/alexcode/vue2vis/issues">
     <img src="https://img.shields.io/github/issues/alexcode/vue2vis.svg?" alt="Issues" />
+  </a>
+  <a href="https://lerna.js.org/">
+    <img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg?" alt="lerna" />
   </a>
 </p>
 
@@ -31,6 +30,8 @@ Please visit individual packages for installation and usage
 - [Timeline](/packages/timeline/README.md)
 - [Graph2d](/packages/graph2d/README.md)
 - [Network](/packages/network/README.md)
+
+For more details please check the full [VisJs documentation](https://visjs.org).
 
 ## List of currently implemented modules
 
@@ -104,4 +105,4 @@ If you discover any security related issues, please email infocontact.alex@gmail
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
 [link-author]: https://github.com/alexcode
-[link-contributors]: ../../contributors
+[link-contributors]: https://github.com/alexcode/vue2vis/graphs/contributors

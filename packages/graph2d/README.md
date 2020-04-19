@@ -3,17 +3,14 @@
 > Vue2 wrapper for the <a href="https://github.com/visjs/vis-graph2d">Visjs Graph2d</a> library.
 
 <p align="center">
-  <a href="https://travis-ci.org/alexcode/vue2vis">
-    <img src="https://travis-ci.org/alexcode/vue2vis.svg?branch=master" alt="Build Status" />
-  </a>
-  <a href="https://coveralls.io/github/alexcode/vue2vis?branch=master">
-    <img src="https://coveralls.io/repos/github/alexcode/vue2vis/badge.svg?branch=master" alt="Coverage Status" />
+  <a href="https://travis-ci.com/alexcode/vue2vis">
+    <img src="https://travis-ci.com/alexcode/vue2vis.svg?branch=master" alt="Build Status" />
   </a>
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?" alt="Software License" />
   </a>
-  <a href="https://npmjs.org/package/vue2vis">
-    <img src="https://img.shields.io/npm/v/vue2vis.svg?" alt="Packagist" />
+  <a href="https://badge.fury.io/js/%40vue2vis%2Fgraph2d">
+    <img src="https://badge.fury.io/js/%40vue2vis%2Fgraph2d.svg" alt="npm version" height="18">
   </a>
   <a href="https://github.com/alexcode/vue2vis/issues">
     <img src="https://img.shields.io/github/issues/alexcode/vue2vis.svg?" alt="Issues" />
@@ -115,7 +112,7 @@ By default all Vis events are emitted by your component. You can subscribe to a 
 When you pass an Array of data object, it is converted internally as a DataSet.
 An event with the DataSet object will be fired at mounted. It's name will be prepend with the prop name (Ex: `items-mounted`, `groups-mounted`). You could use it to interact with the DataSet.
 
-All the [Visjs DataSet event](http://visjs.org/docs/data/dataset.html#Events) will be prepened the same fashion (`items-add`, `items-remove`, `items-update`). For example, pushing a new object to the `items` prop will fire a `items-add` event with the following payload:
+All the [Visjs DataSet event](https://visjs.github.io/vis-data/data/dataset.html#Events) will be prepened the same fashion (`items-add`, `items-remove`, `items-update`). For example, pushing a new object to the `items` prop will fire a `items-add` event with the following payload:
 
 ```javascript
 {
@@ -164,9 +161,9 @@ new Vue({
 
 Full reference of Item and Group formats, options properties and events:
 
-- [Graph2d](http://visjs.org/docs/graph2d)
-- [DataSet](http://visjs.org/docs/dataset),
-- [DataView](http://visjs.org/docs/dataview)
+- [Graph2d](https://visjs.github.io/vis-timeline/docs/graph2d)
+- [DataSet](https://visjs.github.io/vis-data/data/dataset),
+- [DataView](https://visjs.github.io/vis-data/data/dataview)
 
 ## Change log
 
