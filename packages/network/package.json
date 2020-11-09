@@ -5,8 +5,8 @@
   "author": "Alex Couturon <infocontact.alex@gmail.com>",
   "homepage": "https://github.com/alexcode/vue2vis#readme",
   "license": "MIT",
-  "main": "dist/network.cjs.js",
-  "module": "dist/network.esm.js",
+  "main": "dist/network.umd.min.js",
+  "module": "dist/network.esm.min.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -46,6 +46,7 @@
     "keycharm": "^0.3.0",
     "rollup-plugin-node-externals": "^2.1.5",
     "rollup-plugin-node-polyfills": "^0.2.1",
+    "rollup-plugin-terser": "^5.3.0",
     "timsort": "^0.3.0",
     "uuid": "^7.0.0"
   }

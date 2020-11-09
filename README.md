@@ -1,6 +1,7 @@
 # vue2vis
 
 > This monorepo hosts Vue2 component wrapper for the [visjs](https://github.com/visjs) libraries.
+> If you are looking for the old [vis@4.21](https://almende.github.io/vis/) please use the [branch 0.x](https://github.com/alexcode/vue2vis/tree/0.x)
 
 <p align="center">
   <a href="https://travis-ci.com/alexcode/vue2vis">
