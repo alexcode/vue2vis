@@ -1,6 +1,6 @@
 {
   "name": "@vue2vis/network",
-  "version": "1.0.0",
+  "version": "1.0.1-alpha.0",
   "description": "Vue2 wrapper for the Visjs Network library.",
   "author": "Alex Couturon <infocontact.alex@gmail.com>",
   "homepage": "https://github.com/alexcode/vue2vis#readme",
@@ -30,7 +30,7 @@
     "url": "https://github.com/alexcode/vue2vis/issues"
   },
   "dependencies": {
-    "@vue2vis/utils": "^1.0.0",
+    "@vue2vis/utils": "^1.0.1-alpha.0",
     "vis-network": "^7.4.0",
     "vis-util": "^4.0.0"
   },

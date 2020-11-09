@@ -1,6 +1,6 @@
 {
   "name": "@vue2vis/timeline",
-  "version": "1.0.0",
+  "version": "1.0.1-alpha.0",
   "description": "Vue2 wrapper for the Visjs Timeline library.",
   "author": "Alex Couturon <infocontact.alex@gmail.com>",
   "homepage": "https://github.com/alexcode/vue2vis#readme",
@@ -37,7 +37,7 @@
     "timeline"
   ],
   "dependencies": {
-    "@vue2vis/utils": "^1.0.0",
+    "@vue2vis/utils": "^1.0.1-alpha.0",
     "vis-timeline": "^7.3.4",
     "vis-util": "^4.0.0"
   },

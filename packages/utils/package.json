@@ -1,6 +1,6 @@
 {
   "name": "@vue2vis/utils",
-  "version": "1.0.0",
+  "version": "1.0.1-alpha.0",
   "description": "Utility functions for the @vue2vis package family.",
   "author": "Alex Couturon <infocontact.alex@gmail.com>",
   "homepage": "https://github.com/alexcode/vue2vis#readme",
