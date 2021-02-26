@@ -178,7 +178,9 @@ export default {
     this.timeline = null;
   },
   beforeDestroy() {
-    this.timeline.destroy();
+    if (this.timeline !== null) {
+      this.timeline.destroy();
+    }
   }
 };
 </script>
