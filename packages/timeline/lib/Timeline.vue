@@ -123,6 +123,9 @@ export default {
     setCustomTime(time, id) {
       this.timeline.setCustomTime(time, id);
     },
+    setCustomTimeMarker(title, id, editable) {
+      this.timeline.setCustomTimeMarker(title, id, editable);
+    },
     setCustomTimeTitle(title, id) {
       this.timeline.setCustomTimeTitle(title, id);
     },
